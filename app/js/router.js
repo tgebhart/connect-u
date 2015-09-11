@@ -12,17 +12,17 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'HomeController'
   });
 
-  $routeProvider.when('/$resource/list-of-books', {
-    templateUrl: 'books_resource.html',
-    controller: 'BooksResourceController'
+  $routeProvider.when('/$resource/list-of-jobs', {
+    templateUrl: 'jobs_resource.html',
+    controller: 'JobsResourceController'
   });
 
-  $routeProvider.when('/$http/list-of-books', {
-    templateUrl: 'books_http.html',
-    controller: 'BooksHttpController',
+  $routeProvider.when('/$http/list-of-jobs', {
+    templateUrl: 'jobs_http.html',
+    controller: 'JobsHttpController',
     resolve: {
-      books: function(BookService) {
-        return BookService.getBooks();
+      jobs: function(JobService) {
+        return JobService.getJobs();
       }
     }
   });

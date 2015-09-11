@@ -1,6 +1,6 @@
 angular.module("app").controller('HomeController', function($scope, $location, AuthenticationService, $log) {
   $scope.title = "Home";
-  $scope.message = "Mouse Over these images to see a directive at work";
+  $scope.message = "Stuff";
 
   var onLogoutSuccess = function(response) {
     $location.path('/login');
