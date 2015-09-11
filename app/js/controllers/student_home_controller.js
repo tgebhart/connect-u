@@ -1,4 +1,4 @@
-angular.module("app").controller('HomeController', function($scope, $location, AuthenticationService, $log) {
+angular.module("app").controller('StudentHomeController', function($scope, $location, AuthenticationService, $log) {
   $scope.title = "Home";
   $scope.message = "Stuff";
 

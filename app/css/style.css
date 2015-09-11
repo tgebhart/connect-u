@@ -3,7 +3,8 @@ h1,h2,h3,h4,h5 {
 }
 
 button {
-  margin-bottom: 0px !important;
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
 }
 
 * {
@@ -166,4 +167,36 @@ legend:after {
   border-bottom-color: #2ecc71;
   border-width: 10px;
   margin-left: -10px;
+}
+
+.well {
+  margin-top: 75px;
+}
+
+
+#sidebar-wrapper {
+    height: 100%;
+    padding: 50px 0 0px 0;
+    position: fixed;
+    border-right: 1px solid gray;
+}
+#sidebar {
+    position: relative;
+    height: 100%;
+    overflow:hidden;
+}
+#sidebar .list-group-item {
+        border-radius: 5;
+        border-left: 5;
+        border-right: 5;
+        border-top: 5;
+}
+
+@media (max-width: 992px) {
+    #sidebar-wrapper {
+        position: static;
+        height:auto;
+        max-height: 300px;
+  		border-right:0;
+	}
 }

@@ -11,8 +11,11 @@ module.exports = function(lineman) {
     js: {
       vendor: [
         "vendor/js/angular.js",
+        "vendor/angular-bootstrap/ui-bootstrap.js",
+        //"vendor/bootstrap/js/bootstrap.js",
         "vendor/js/**/*.js",
-        "vendor/aws-sdk/aws-sdk.js"
+        "vendor/js/angular-dashboard-framework.js",
+        "vendor/angular-dashboard-framework/dist/angular-dashboard-framework.js",
       ],
       app: [
         "app/js/app.js",
@@ -30,7 +33,9 @@ module.exports = function(lineman) {
     css: {
       compile: {
         options: {
-          paths: ["vendor/css/normalize.css", "vendor/css/**/*.css", "app/css/**/*.css", "vendor/css/font-awesome.min.css"]
+          paths: ["vendor/css/bootstrap.min.css", "vendor/css/font-awesome.min.css", "vendor/css/normalize.css", "vendor/css/**/*.css", "app/css/**/*.css"],
+
+
         }
       }
     },

@@ -7,9 +7,14 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'LoginController'
   });
 
-  $routeProvider.when('/home', {
-    templateUrl: 'home.html',
-    controller: 'HomeController'
+  $routeProvider.when('/student/home', {
+    templateUrl: 'student_home.html',
+    controller: 'StudentHomeController'
+  });
+
+  $routeProvider.when('/business/home', {
+    templateUrl: 'business_home.html',
+    controller: 'BusinessHomeController'
   });
 
   $routeProvider.when('/$resource/list-of-jobs', {
