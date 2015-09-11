@@ -1,9 +1,9 @@
 <!doctype html>
 <div ng-app="app" ng-controller="BusinessHomeController">
 <div class="navbar navbar-fixed-top navbar-default">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="navbar-header"><a class="navbar-brand" href="#">Project name</a>
+      <div class="navbar-header"><a class="navbar-brand" href="#">Connect-U</a>
         <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="glyphicon glyphicon-bar"></span>
           <span class="glyphicon glyphicon-bar"></span>
@@ -25,28 +25,24 @@
           Profile <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-          <li role="menuitem"><a href="#">Action</a></li>
-          <li role="menuitem"><a href="#">Another action</a></li>
-          <li role="menuitem"><a href="#">Something else here</a></li>
+          <li role="menuitem"><a href="#">Your Profile</a></li>
+          <li role="menuitem"><a href="#">Help</a></li>
           <li class="divider"></li>
-          <li role="menuitem"><a href="#">Separated link</a></li>
+          <li role="menuitem"><a href="#"  ng-click="logout()">Logout</a></li>
         </ul>
       </div>
         </ul>
-
-
       </div>
     </div>
   </div>
 </div>
-
 <!--/.navbar-collapse -->
 <div class="container">
   <div class="row">
     <div class="col-lg-3">
-      <div class="sidebar-nav-fixed affix">
-        <div class="well">
-          <ul class="nav nav-stacked-fixed">
+      <ul id="nav-mobile" class="side-nav fixed">
+          <li class="logo">
+          </li>
             <li class="nav-header">Sidebar</li>
             <li class="active"><a href="#">Link</a>
             </li>
@@ -65,14 +61,4 @@
       </div>
       <!--/sidebar-nav-fixed -->
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <button ng-click="logout()" class="button large expand radius">Log Out</button>
-      </div>
-    </div>
-
-  </div>
-</div>
 </div>
