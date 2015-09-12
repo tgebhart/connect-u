@@ -1,0 +1,129 @@
+<!doctype html>
+<div ng-app="app" ng-controller="BusinessEditProfileController">
+<div class="navbar navbar-fixed-top navbar-default">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="navbar-header"><a class="navbar-brand" href="#">Connect-U</a>
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="glyphicon glyphicon-bar"></span>
+          <span class="glyphicon glyphicon-bar"></span>
+          <span class="glyphicon glyphicon-bar"></span>
+        </a>
+      </div>
+      <div class="navbar-collapse">
+        <ul id="busname" class="nav navbar-nav navbar-center">
+          <li role="menuitem"><a href="#">Business Name</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <div class="btn-group" dropdown is-open="status.isopen">
+        <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+          Profile <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+          <li role="menuitem"><a href="/business/profile">Your Profile</a></li>
+          <li role="menuitem"><a href="#">Help</a></li>
+          <li class="divider"></li>
+          <li role="menuitem"><a href="#"  ng-click="logout()">Logout</a></li>
+        </ul>
+      </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<body>
+  <div class="container-fluid">
+    <div class="panel panel-primary dialog-panel">
+      <div class="panel-heading">
+        <h2>Your Profile</h2>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+          <div class="form-group">
+            <label class="control-label col-md-2 col-md-offset-2" for="id_company">Company</label>
+            <div class="col-md-8">
+              <div class="col-md-10">
+                <div class="form-group internal">
+                  <input class="form-control col-md-8" id="id_adults" placeholder="Name of Company" type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+          <label class="control-label col-md-2 col-md-offset-2" for="id_title">Name</label>
+          <div class="col-md-8">
+            <div class="col-md-1">
+              <div class="form-group internal">
+                <select class="form-control" id="id_title">
+                  <option></option>
+                  <option>Mr</option>
+                  <option>Ms</option>
+                  <option>Mrs</option>
+                  <option>Dr</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3 indent-small">
+              <div class="form-group internal">
+                <input class="form-control" id="id_first_name" placeholder="First Name" type="text">
+              </div>
+            </div>
+            <div class="col-md-3 indent-small">
+              <div class="form-group internal">
+                <input class="form-control" id="id_last_name" placeholder="Last Name" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="form-group">
+            <label class="control-label col-md-2 col-md-offset-2" for="id_email">Contact</label>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="col-md-11">
+                  <input class="form-control" id="id_email" placeholder="E-mail" type="text">
+                </div>
+              </div>
+              <div class="form-group internal">
+                <div class="col-md-11">
+                  <input class="form-control" id="id_phone" placeholder="Phone: (xxx) xxx-xxxx" type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-2 col-md-offset-2" for="id_toggle">Toggle Something</label>
+            <div class="col-md-8">
+              <div class="make-switch" data-off-label="NO" data-on-label="YES" id="id_toggle_switch">
+                <input id="id_toggle" type="checkbox">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-2 col-md-offset-2" for="id_description">Company Description</label>
+            <div class="col-md-8">
+              <textarea class="form-control" id="id_description" placeholder="Tell us a bit about your business" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-2 col-md-offset-2" for="id_division">Company Division</label>
+            <div class="col-md-8">
+              <input class="form-control" id="id_division" placeholder=""></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-3 col-md-3">
+              <button class="btn-lg btn-primary" type="submit">Save Changes</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn-lg btn-danger" style="float:right" type="submit">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</div>

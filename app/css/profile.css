@@ -1,0 +1,27 @@
+.indent-small {
+  margin-left: 5px;
+}
+.form-group.internal {
+  margin-bottom: 0;
+}
+
+.dialog-panel {
+  margin: 50px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.datepicker-dropdown {
+  z-index: 200 !important;
+}
+
+.panel-body {
+-moz-box-shadow: 1px 1px 5px #888;
+-webkit-box-shadow: 1px 1px 5px #888;
+  box-shadow: 1px 1px 5px #888;
+}
+
+label.control-label {
+  font-weight: 600;
+}

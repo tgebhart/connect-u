@@ -17,6 +17,21 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'BusinessHomeController'
   });
 
+  $routeProvider.when('/business/profile', {
+    templateUrl: 'business_edit_profile.html',
+    controller: 'BusinessEditProfileController'
+  });
+
+  $routeProvider.when('/business/add-jobs' , {
+    templateUrl: 'add_jobs.html',
+    controller: 'AddJobsController'
+  });
+
+  $routeProvider.when('/business/new-job', {
+    templateUrl: 'new_job.html',
+    controller: 'BusinessNewJobController'
+  });
+
   $routeProvider.when('/$resource/list-of-jobs', {
     templateUrl: 'jobs_resource.html',
     controller: 'JobsResourceController'

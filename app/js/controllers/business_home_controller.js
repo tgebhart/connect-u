@@ -12,13 +12,7 @@ angular.module("app").controller('BusinessHomeController', function($scope, $loc
     $scope.profileDropdownState = !$scope.profileDropdownState;
   };
 
-
   $scope.logout = function() {
     AuthenticationService.logout().success(onLogoutSuccess);
-  };
-
-
-  $scope.hello = function(){
-    $log.log('hey');
   };
 });

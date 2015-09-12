@@ -41,18 +41,15 @@ html, body {
 .bottom50 {
   margin-bottom: 50px;
 }
-
 .col-centered {
   float: none;
   margin: 0 auto;
 }
-
 .loginlogo {
   position: relative;
   top: 50%;
   width: 300px;
 }
-
 .login {
   position: relative;
   top: 50%;
@@ -61,7 +58,6 @@ html, body {
   border-radius: 20px;
   border-color: #000000
 }
-
 legend {
   position: relative;
   width: 100%;
@@ -84,7 +80,6 @@ legend:after {
   right: 0;
   position: absolute;
 }
-
 .input {
   position: relative;
   width: 90%;
@@ -112,7 +107,6 @@ legend:after {
   outline: 0;
   border-color: #FF7052;
 }
-
 .submit {
   width: 45px;
   height: 45px;
@@ -132,7 +126,6 @@ legend:after {
   color: #fff;
   outline: 0;
 }
-
 .feedback {
   position: absolute;
   bottom: -70px;
@@ -168,8 +161,16 @@ legend:after {
   margin-left: 10px;
 }
 
-.navbar-nav {
-    margin-right: 10px;
+.navbar {
+  -moz-box-shadow: 1px 1px 5px #888;
+  -webkit-box-shadow: 1px 1px 5px #888;
+    box-shadow: 1px 1px 5px #888;
+}
+
+navbar-nav {
+  -moz-box-shadow: 1px 1px 5px #888;
+  -webkit-box-shadow: 0px 0px 0px #888;
+    box-shadow: 1px 1px 5px #888;
 }
 
 #sidebar-wrapper {
@@ -198,27 +199,19 @@ legend:after {
   		border-right:0;
 	}
 }
-
 .side-nav {
   position: fixed;
   width: 240px;
   left: -105%;
   top: 0;
-  -moz-box-shadow: 10px 10px 5px #888;
-  -webkit-box-shadow: 10px 10px 5px #888;
-    box-shadow: 1px 1px 5px #888;
-  margin: 0;
+  -moz-box-shadow: 1px 1px 3px #888;
+  -webkit-box-shadow: 1px 1px 3px #888;
+    box-shadow: 1px 1px 3px #888;
   height: 100%;
   height: calc(100% + 60px);
   height:
-
-
-
-
-
-
-
   -moz-calc(100%);
+  padding-top: 60px;
   padding-bottom: 60px;
   background-color: #fff;
   z-index: 999;
@@ -235,7 +228,11 @@ legend:after {
     float: none;
     padding: 0 15px; }
     .side-nav li:hover, .side-nav li.active {
-      background-color: #ddd; }
+      padding-top: 30px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding-bottom: 30px;
+      background-color: #D8D5D4; }
   .side-nav a {
     color: #444;
     display: block;
@@ -262,3 +259,9 @@ legend:after {
   .side-nav.fixed.right-aligned {
     right: 0;
     left: auto; }
+
+.btn-primary {
+  margin-right: 30px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
