@@ -12,10 +12,11 @@ module.exports = function(lineman) {
       vendor: [
         "vendor/js/angular.js",
         "vendor/angular-bootstrap/ui-bootstrap.js",
-        //"vendor/bootstrap/js/bootstrap.js",
         "vendor/js/**/*.js",
         "vendor/js/angular-dashboard-framework.js",
         "vendor/angular-dashboard-framework/dist/angular-dashboard-framework.js",
+        "vendor/js/aws-sdk.js",
+        //"vendor/js/ui-bootstrap-tpls.js"
       ],
       app: [
         "app/js/app.js",
@@ -25,8 +26,8 @@ module.exports = function(lineman) {
 
     webfonts: {
       files: {
-        "vendor/components/bootstrap/fonts/": "vendor/bootstrap/fonts/**/*.*",
-        "vendor/components/font-awesome/fonts/": "vendor/font-awesome/fonts/**/*.*"
+        "vendor/bootstrap/fonts/": "vendor/bootstrap/fonts/**/*.*",
+        "vendor/font-awesome/fonts/": "vendor/font-awesome/fonts/**/*.*"
       }
     },
 

@@ -1,0 +1,39 @@
+.btn-primary {
+  color: #fff;
+  background-color: #337AB7;
+  border-color: #000;
+}
+
+.outline {
+  background-color: #fff;
+  color: #fff;
+}
+
+.fa-plus {
+  color: #000000;
+}
+
+.btn-large {
+}
+
+.btn-sm {
+  background-color: #337AB7;
+  margin-left: 20px;
+}
+
+.post-job {
+  color: #fff;
+  background-color: #337AB7;
+  border-color: #337AB7;
+}
+
+.full button span {
+  background-color: limegreen;
+  border-radius: 32px;
+  color: black;
+}
+.partially button span {
+  background-color: orange;
+  border-radius: 32px;
+  color: black;
+}
