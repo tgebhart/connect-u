@@ -1,6 +1,6 @@
 angular.module("app").factory("JobService", function($q, $http) {
 
-  var getBooks = function() {
+  var getJobs = function() {
     return $http.get('/jobs');
   };
 

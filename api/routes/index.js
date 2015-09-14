@@ -10,13 +10,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/test', function(req, res, next) {
+router.get('/api/test', function(req, res, next) {
   ArticleProvider.scanTable(function(err, articleCollection){
     if (err){
       console.log('Im mr meseeks',err);
     } else {
         console.log('in routes test', articleCollection);
-        res.send('joes');
+        res.send(articleCollection);
 
     }
 
