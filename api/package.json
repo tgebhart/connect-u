@@ -1,9 +1,21 @@
 {
-  "name": "api",
+  "name": "connect-u-api",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tgebhart/connect-u.git"
+  },
+  "author": "gebharttom8@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tgebhart/connect-u/issues"
+  },
+  "homepage": "https://github.com/tgebhart/connect-u",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -12,6 +24,12 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "aws-sdk": "latest",
+    "csv": "latest",
+    "debug": "latest",
+    "dynamodb-data-types": "latest",
+    "ejs": "latest",
+    "stack-trace": "latest"
   }
 }
