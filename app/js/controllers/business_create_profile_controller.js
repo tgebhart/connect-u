@@ -1,17 +1,23 @@
 angular.module("app").controller('BusinessCreateProfileController', function($scope, $location, AuthenticationService, $log, BusinessUserResource, BusinessUserService) {
 
   $scope.user = {
-    "company":"",
-    "title": "",
-    "firstname":"",
-    "lastname":"",
-    "email":"",
-    "phone":"",
-    "company-description":"",
-    "company-division":""
+
 };
 
+  var checkUp = function(createParams, callback) {
+    _.forEach(createParams.Item, function(value, thing) {
+      console.log(thing);
+      if(value.S === undefined){
+        console.log('caught undefined', createParams.Item[thing]);
+        createParams.Item[thing] = {"S": "null"};
+      }
+    });
+    callback(createParams);
+  };
+
+
   $scope.addUser = function() {
+
     var createParams = {
         "TableName": "business_users",
         "Item": {
@@ -25,11 +31,17 @@ angular.module("app").controller('BusinessCreateProfileController', function($sc
             "company-division": {"S" : $scope.user.companyDivision}
         }
     };
-    console.log('add user called', $scope.user);
+    checkUp(createParams, function(createParams){
+    console.log('fixed post params', createParams);
     BusinessUserService.setPostParams(createParams);
     BusinessUserResource = new BusinessUserResource();
-    var createdUser = BusinessUserResource.post(createParams);
-    console.log('createduserbackhome', createdUser);
-  };
+    var createdUser = BusinessUserResource.create(createParams, function(val){
+      console.log('createduserbackhome', createdUser);
+      if(val){
+        $location.path('/business/choose_username');
+      }
+      });
 
+    });
+  };
 });

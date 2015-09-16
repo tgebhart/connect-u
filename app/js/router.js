@@ -7,6 +7,21 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'LoginController'
   });
 
+  $routeProvider.when('/i_am_a', {
+    templateUrl: 'i_am_a.html',
+    controller: 'IAmAController'
+  });
+
+  $routeProvider.when('/business/choose_username', {
+    templateUrl: 'choose_username.html',
+    controller: 'BusinessChooseUsernameController'
+  });
+
+  $routeProvider.when('/student/choose_username', {
+    templateUrl: 'student_choose_username.html',
+    controller: 'StudentChooseUsernameController'
+  });
+
   $routeProvider.when('/student/home', {
     templateUrl: 'student_home.html',
     controller: 'StudentHomeController'

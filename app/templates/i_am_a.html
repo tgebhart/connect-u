@@ -1,0 +1,28 @@
+<!doctype html>
+<div ng-app="app" ng-controller="IAmAController">
+<body>
+  <div class="container-fluid">
+    <div class="panel panel-primary dialog-panel">
+      <div class="panel-heading">
+        <h2>I Am A: </h2>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-2 col-md-offset-2" for="id_toggle">Business</label>
+        <div class="col-md-8">
+          <div class="make-switch" data-off-label="NO" data-on-label="YES" id="id_toggle_switch">
+            <input id="id_toggle" type="checkbox" ng-model="businessCheck" ng-click="downToBusiness()">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-2 col-md-offset-2" for="id_toggle">Student</label>
+        <div class="col-md-8">
+          <div class="make-switch" data-off-label="NO" data-on-label="YES" id="id_toggle_switch">
+            <input id="id_toggle" type="checkbox" ng-model="studentCheck" ng-click="downToStudent()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</div>

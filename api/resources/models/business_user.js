@@ -11,18 +11,6 @@ var db = new AWS.DynamoDB({region:'us-west-2'});
 var BusinessUserProvider = function(){
 };
 
-var scanParams = {
-    TableName: 'test',
-        // more conditions ...
-    //Select: 'ALL_ATTRIBUTES', // optional (ALL_ATTRIBUTES | ALL_PROJECTED_ATTRIBUTES |
-                              //           SPECIFIC_ATTRIBUTES | COUNT)
-    AttributesToGet: [ // optional (list of specific attribute names to return)
-        'title',
-        // ... more attributes ...
-    ],
-};
-
-
 var user_collection = {};
 
 BusinessUserProvider.prototype.getAllUsers = function(callback) {
@@ -39,6 +27,7 @@ BusinessUserProvider.prototype.getAllUsers = function(callback) {
 };
 
 BusinessUserProvider.prototype.createUser = function(info, callback) {
+  console.log('creating user in businessprovider');
   db.putItem(info, function(err, data) {
     if (err) {
       console.log('aws unable to add', err);
@@ -52,17 +41,16 @@ BusinessUserProvider.prototype.createUser = function(info, callback) {
 };
 
 BusinessUserProvider.prototype.editUser = function(user, callback) {
-
-
-
-  if(error){
-    console.log('editUser error', error);
-    return callback(error);
-  }
-  else {
-    console.log('edited user: ', user);
-    return callback(null);
-  }
+  db.putItem(info, function(err, data) {
+    if(error){
+      console.log('editUser error', error);
+      return callback(error);
+    }
+    else {
+      console.log('edited user: ', user);
+      return callback(null);
+    }
+  });
 };
 
 

@@ -4,6 +4,8 @@ angular.module("app", ["ngResource", "ngRoute", "ui.bootstrap", "ui.bootstrap.tp
     console.log(thing);
   };
 
+  $rootScope._ = 'lodash';
+
   $rootScope.alert = function(thing) {
     alert(thing);
   };

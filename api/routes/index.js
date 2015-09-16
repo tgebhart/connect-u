@@ -25,7 +25,7 @@ router.get('/api/test', function(req, res, next) {
   });
 });
 
-router.post('/api/edit_profile', function(req, res, next) {
+router.post('/api/business/edit-profile', function(req, res, next) {
   BusinessUserProvider.editUser(req.createParams, function(err) {
     if (err) {
       console.log('Im mr createrror', err);
@@ -38,7 +38,6 @@ router.post('/api/edit_profile', function(req, res, next) {
 });
 
 router.post('/api/business/create-profile', function(req, res, next) {
-  console.log('createParams======', req.body);
     BusinessUserProvider.createUser(req.body, function(err) {
       if (err) {
         console.log('Im mr createrror', err);
