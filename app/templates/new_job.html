@@ -78,12 +78,12 @@
               <label class="control-label col-md-2 col-md-offset-2" for="workers_required">Workers Required</label>
               <div class="col-md-8">
                 <div class="col-md-10 ">
-                  <div class="form-group internal">
-                    <input class="form-control" id="worker_specialization" placeholder="Worker Specialization" type="text">
+                  <div class="form-group internal" data-ng-repeat="choice in choices">
+                    <input class="form-control" id="worker_specialization" placeholder="Worker Specialization" ng-model="choice.name" type="text">
                   </div>
                 </div>
                 <div class="col-md-1">
-                  <button id="add_worker_button" ng-click="newLine()" class="btn btn-primary outline fa fa-plus"></button>
+                  <button id="add_worker_button" ng-click="addNewChoice()" title="Add another worker" class="btn btn-primary outline fa fa-plus"></button>
                 </div>
               </div>
             </div>
@@ -108,18 +108,15 @@
                   </div>
                   <div class="col-md-2">
                     <div class="form-group internal">
-                      <select class="form-control" id="preffered_method">
-                        <option>Email</option>
-                        <option>Call</option>
-                        <option>Text</option>
-                        <option>Other</option>
+                      <select class="form-control" id="preffered_method" ng-model="contactMethod" ng-change="changedValue(contactMethod)" data-ng-options="contactMethod as contactMethod.name for contactMethod in contactMethods">
+                        <option value="">Select</option>
                       </select>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-offset-1 col-md-6 ">
                     <div class="form-group internal">
-                      <input class="form-control" id="poc_input" placeholder="" type="text">
+                      <input class="form-control" id="poc_input" placeholder="{{contactText}}" type="text">
                     </div>
                 </div>
                 </div>

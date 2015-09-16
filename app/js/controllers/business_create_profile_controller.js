@@ -4,16 +4,6 @@ angular.module("app").controller('BusinessCreateProfileController', function($sc
 
 };
 
-  var checkUp = function(createParams, callback) {
-    _.forEach(createParams.Item, function(value, thing) {
-      console.log(thing);
-      if(value.S === undefined){
-        console.log('caught undefined', createParams.Item[thing]);
-        createParams.Item[thing] = {"S": "null"};
-      }
-    });
-    callback(createParams);
-  };
 
 
   $scope.addUser = function() {
@@ -31,17 +21,7 @@ angular.module("app").controller('BusinessCreateProfileController', function($sc
             "company-division": {"S" : $scope.user.companyDivision}
         }
     };
-    checkUp(createParams, function(createParams){
-    console.log('fixed post params', createParams);
     BusinessUserService.setPostParams(createParams);
-    BusinessUserResource = new BusinessUserResource();
-    var createdUser = BusinessUserResource.create(createParams, function(val){
-      console.log('createduserbackhome', createdUser);
-      if(val){
-        $location.path('/business/choose_username');
-      }
-      });
-
-    });
+    $location.path('/business/choose_username');
   };
 });

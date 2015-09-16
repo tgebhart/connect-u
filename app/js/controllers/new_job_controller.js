@@ -1,5 +1,28 @@
 angular.module("app").controller('BusinessNewJobController', function($scope, $location, AuthenticationService, $log, $templateCache) {
 
+  $scope.choices = [{id: 'choice1'}];
+
+  $scope.addNewChoice = function() {
+  var newItemNo = $scope.choices.length+1;
+  $scope.choices.push({'id':'choice'+newItemNo});
+};
+
+  $scope.contactText = "";
+
+$scope.itemList=[];
+   $scope.contactMethods = [{id:1,name:"Email"},{id:2,name:"Call"},{id:3,name:"Text"},{id:4,name:"Other"}];
+
+   $scope.changedValue=function(item){
+     console.log(item.name);
+     $scope.contactText = item.name;
+     $scope.itemList.push(item.name);
+ };
+
+
+
+
+
+
   $scope.today = function() {
     $scope.dt = new Date();
   };
