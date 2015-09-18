@@ -1,4 +1,4 @@
-angular.module("app").controller('BusinessNewJobController', function($scope, $location, AuthenticationService, $log, $templateCache) {
+angular.module("app").controller('BusinessNewJobController', function($scope, $location, AuthenticationService, $log, $templateCache, upload) {
 
   $scope.choices = [{id: 'choice1'}];
 
@@ -18,7 +18,22 @@ $scope.itemList=[];
      $scope.itemList.push(item.name);
  };
 
-
+ $scope.doUpload = function () {
+    upload({
+      url: '/api/business/upload-extra-info',
+      method: 'POST',
+      data: {
+        aFile: $scope.extraFile, // a jqLite type="file" element, upload() will extract all the files from the input and put them into the FormData object before sending.
+      }
+    }).then(
+      function (response) {
+        console.log(response.data); // will output whatever you choose to return from the server on a successful upload
+      },
+      function (response) {
+          console.error(response); //  Will return if status code is above 200 and lower than 300, same as $http
+      }
+    );
+  };
 
 
 

@@ -65,6 +65,7 @@
     "Sortable": "1.2",
     "textAngular": "latest",
     "ui-bootstrap": "latest",
-    "waypoints": "4"
+    "waypoints": "4",
+    "angular-upload": "latest"
   }
 }

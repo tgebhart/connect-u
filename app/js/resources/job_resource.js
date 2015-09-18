@@ -1,3 +1,11 @@
 angular.module("app").factory("JobResource", function($q, $resource) {
-  return $resource('/jobs');
+
+  JobResource = new JobResource();
+
+
+  JobResource.prototype.s3Upload = function(params, callback) {
+    console.log('posting');
+
+
+  };
 });

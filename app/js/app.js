@@ -1,4 +1,4 @@
-angular.module("app", ["ngResource", "ngRoute", "ui.bootstrap", "ui.bootstrap.tpls"]).run(function($rootScope) {
+angular.module("app", ["ngResource", "ngRoute", "ui.bootstrap", "ui.bootstrap.tpls", "lr.upload"]).run(function($rootScope) {
   // adds some basic utilities to the $rootScope for debugging purposes
   $rootScope.log = function(thing) {
     console.log(thing);
