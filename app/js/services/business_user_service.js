@@ -12,7 +12,12 @@ angular.module("app").service('BusinessUserService', function () {
             },
 
             getUser: function () {
+              if(user !== ''){
               return user;
+            }
+            else {
+              return 'test';
+            }
             },
             setUser: function(user) {
               this.user = user;

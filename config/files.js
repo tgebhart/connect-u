@@ -5,13 +5,12 @@
  *
  *   - https://github.com/linemanjs/lineman/blob/master/config/files.coffee
  */
-module.exports = function(lineman) {
+module.exports = function (lineman) {
   //Override file patterns here
   return {
     js: {
       vendor: [
         "vendor/js/angular.js",
-        "vendor/js/src/*.js",
         "vendor/angular-bootstrap/ui-bootstrap.js",
         "vendor/js/**/*.js",
         "vendor/js/angular-dashboard-framework.js",

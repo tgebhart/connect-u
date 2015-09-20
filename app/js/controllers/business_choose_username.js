@@ -26,8 +26,8 @@ angular.module("app").controller('BusinessChooseUsernameController', function($s
       }
     });
 
-    createParams.Item["username"] = {"S" : $scope.user.username};
     createParams.Item["password"] = {"S" : $scope.user.password};
+    createParams.Item["username"] = {"S" : $scope.user.username};
 
 
     checkUp(createParams, function(createParams) {

@@ -70,7 +70,7 @@
                 <div class="col-md-8">
                   <div class="col-md-10 ">
                     <div class="form-group internal">
-                      <input class="form-control" id="job_title" placeholder="" type="text">
+                      <input class="form-control" id="job_title" placeholder="" type="text" ng-model="job.title">
                     </div>
                   </div>
                 </div>
@@ -90,13 +90,13 @@
             <div class="form-group">
               <label class="control-label col-md-2 col-md-offset-2" for="id_description">Job Description</label>
               <div class="col-md-8">
-                <textarea class="form-control" id="description" placeholder="" rows="3"></textarea>
+                <textarea class="form-control" id="description" placeholder="" rows="3" ng-model="job.description"></textarea>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-2 col-md-offset-2" for="id_description">Expectations</label>
               <div class="col-md-8">
-                <textarea class="form-control" id="expectations" placeholder="" rows="3"></textarea>
+                <textarea class="form-control" id="expectations" placeholder="" rows="3" ng-model="job.expectations"></textarea>
               </div>
             </div>
             <div class="form-group">
@@ -104,7 +104,7 @@
               <div class="col-md-7">
                 <div class="form-group">
                   <div class="col-md-10">
-                    <input class="form-control" placeholder="Name" type="text">
+                    <input class="form-control" placeholder="Name" type="text" ng-model="job.poc_name">
                   </div>
                   <div class="col-md-2">
                     <div class="form-group internal">
@@ -115,11 +115,11 @@
                   </div>
                   <div class="row">
                     <div class="col-md-offset-1 col-md-6 ">
-                    <div class="form-group internal">
-                      <input class="form-control" id="poc_input" placeholder="{{contactText}}" type="text">
+                      <div class="form-group internal">
+                        <input class="form-control" id="poc_input" placeholder="{{contactText}}" type="text" ng-model="job.poc_input">
+                      </div>
                     </div>
-                </div>
-                </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -136,24 +136,25 @@
             <div class="form-group">
               <label class="control-label col-md-2 col-md-offset-2" for="deadline">Deadline</label>
               <div class="col-md-6">
-                  <p class="input-group">
-                    <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                  </p>
+                <p class="input-group">
+                  <input type="date" class="form-control" datepicker-popup is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="job.deadline" />
+                </p>
               </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-            <label class="control-label col-md-2 col-md-offset-2" for="id_extra">Extra Information</label>
-            <button class="btn-primary fa fa-cloud-upload"><input class="upload" ng-click="doUpload()" name="extraFile" type="file"></input></button>
-          </div>
-          </div>
-          <div class="row">
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <label class="control-label col-md-2 col-md-offset-2" for="id_extra">Extra Information</label>
+            <button class="btn-primary fa fa-cloud-upload"><input  name="file" type="file" file></input></button>
 
-          </div>
-              <div class="form-group">
-                <div class="row">
+              </div>
+            </div>
+            <div class="row">
+
+            </div>
+            <div class="form-group">
+              <div class="row">
                 <span class="col-md-offset-4 col-md-5">
-                  <button class="btn-lg btn-primary post-job" type="submit">Post Job</button>
+                  <button class="btn-lg btn-primary post-job" ng-click="upload()">Post Job</button>
                 </span>
                 <div class="col-md-1">
                   <button class="btn-lg btn-danger" style="float:right" type="submit">Cancel</button>
@@ -161,11 +162,11 @@
               </div>
             </div>
           </form>
-          </div>
         </div>
       </div>
+    </div>
   </body>
 
 
 
-  </div>
+</div>

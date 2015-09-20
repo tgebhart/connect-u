@@ -1,38 +1,136 @@
-angular.module("app").controller('BusinessNewJobController', function($scope, $location, AuthenticationService, $log, $templateCache, upload) {
+angular.module("app").controller('BusinessNewJobController', function($scope, $timeout, $http, $location, AuthenticationService, $log, $templateCache, BusinessUserService, JobResource) {
 
-  $scope.choices = [{id: 'choice1'}];
+  $scope.userParams = BusinessUserService.getUser();
+  $scope.job = {};
+
+  $scope.choices = [{
+    id: '1'
+  }];
 
   $scope.addNewChoice = function() {
-  var newItemNo = $scope.choices.length+1;
-  $scope.choices.push({'id':'choice'+newItemNo});
-};
+    var newItemNo = $scope.choices.length + 1;
+    $scope.choices.push({
+      'id': newItemNo
+    });
+  };
 
   $scope.contactText = "";
 
-$scope.itemList=[];
-   $scope.contactMethods = [{id:1,name:"Email"},{id:2,name:"Call"},{id:3,name:"Text"},{id:4,name:"Other"}];
+  $scope.itemList = [];
+  $scope.contactMethods = [{
+    id: 1,
+    name: "Email"
+  }, {
+    id: 2,
+    name: "Call"
+  }, {
+    id: 3,
+    name: "Text"
+  }, {
+    id: 4,
+    name: "Other"
+  }];
 
-   $scope.changedValue=function(item){
-     console.log(item.name);
-     $scope.contactText = item.name;
-     $scope.itemList.push(item.name);
- };
+  $scope.changedValue = function(item) {
+    console.log(item.name);
+    $scope.contactText = item.name;
+    $scope.itemList.push(item.name);
+  };
 
- $scope.doUpload = function () {
-    upload({
-      url: '/api/business/upload-extra-info',
-      method: 'POST',
-      data: {
-        aFile: $scope.extraFile, // a jqLite type="file" element, upload() will extract all the files from the input and put them into the FormData object before sending.
+  var checkUp = function(params, callback) {
+    _.forEach(params.Item, function(value, thing) {
+      console.log(thing);
+      if (value.S === undefined && value.SS === undefined) {
+        console.log('caught undefined', params.Item[thing]);
+        params.Item[thing] = {
+          "S": "null"
+        };
       }
-    }).then(
-      function (response) {
-        console.log(response.data); // will output whatever you choose to return from the server on a successful upload
-      },
-      function (response) {
-          console.error(response); //  Will return if status code is above 200 and lower than 300, same as $http
+    });
+    callback(params);
+  };
+
+
+  $scope.upload = function() {
+    // Configure The S3 Object
+
+    JobResource = new JobResource();
+    var formData = new FormData();
+    $scope.userParams = BusinessUserService.getUser();
+
+    $scope.job.workers_required = [];
+    _.forEach($scope.choices, function(choice) {
+      console.log('choice', choice);
+      $scope.job.workers_required.push(choice.name + ' ' + choice.id);
+    });
+
+    if ($scope.contactText === "") {
+      $scope.contactText = "null";
+    }
+    var now = new Date();
+
+    var postParams = {
+      "TableName": "jobs",
+      "Item": {
+        "title": {
+          "S": $scope.job.title
+        },
+        "workers_required": {
+          "SS": $scope.job.workers_required
+        },
+        "description": {
+          "S": $scope.job.description
+        },
+        "expectations": {
+          "S": $scope.job.expectations
+        },
+        "poc_name": {
+          "S": $scope.job.poc_name
+        },
+        "poc_method": {
+          "S": $scope.contactText
+        },
+        "poc_input": {
+          "S": $scope.job.poc_input
+        },
+        "deadline": {
+          "S": $scope.job.deadline
+        },
+        "uploaded_by": {
+          "S": $scope.userParams
+        },
+        "post_date": {
+          "S": now
+        },
+        "extra_info_url": {},
       }
-    );
+    };
+
+    if ($scope.file) {
+      postParams.Item.extra_info_url = {
+        "S": "https://s3-us-west-2.amazonaws.com/job-extra-info/" + $scope.file.name
+      };
+      var params = {
+        Key: $scope.file.name,
+        ContentType: $scope.file.type,
+        Body: formData.append("file", $scope.file),
+        ServerSideEncryption: 'AES256'
+      };
+      JobResource.uploadExtraInfo(params);
+    }
+
+    checkUp(postParams, function(postParams) {
+      console.log('fixed post params', postParams);
+      //JobResource = new JobResource();
+      var postJob = JobResource.postJob(postParams, function(val) {
+        console.log('createdjobbackhome', val);
+        if (val) {
+          $location.path('/business/home');
+        }
+
+      });
+    });
+
   };
 
 
@@ -43,13 +141,13 @@ $scope.itemList=[];
   };
   $scope.today();
 
-  $scope.clear = function () {
+  $scope.clear = function() {
     $scope.dt = null;
   };
 
   // Disable weekend selection
   $scope.disabled = function(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
   };
 
   $scope.toggleMin = function() {
@@ -78,24 +176,20 @@ $scope.itemList=[];
   tomorrow.setDate(tomorrow.getDate() + 1);
   var afterTomorrow = new Date();
   afterTomorrow.setDate(tomorrow.getDate() + 2);
-  $scope.events =
-    [
-      {
-        date: tomorrow,
-        status: 'full'
-      },
-      {
-        date: afterTomorrow,
-        status: 'partially'
-      }
-    ];
+  $scope.events = [{
+    date: tomorrow,
+    status: 'full'
+  }, {
+    date: afterTomorrow,
+    status: 'partially'
+  }];
 
   $scope.getDayClass = function(date, mode) {
     if (mode === 'day') {
-      var dayToCheck = new Date(date).setHours(0,0,0,0);
+      var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
 
-      for (var i=0;i<$scope.events.length;i++){
-        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+      for (var i = 0; i < $scope.events.length; i++) {
+        var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
 
         if (dayToCheck === currentDay) {
           return $scope.events[i].status;

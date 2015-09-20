@@ -30,6 +30,7 @@
     "debug": "latest",
     "dynamodb-data-types": "latest",
     "ejs": "latest",
-    "stack-trace": "latest"
+    "stack-trace": "latest",
+    "connect-busboy": "latest"
   }
 }
