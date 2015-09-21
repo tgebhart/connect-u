@@ -101,7 +101,10 @@ angular.module("app").controller('BusinessNewJobController', function($scope, $t
           "S": $scope.job.deadline
         },
         "uploaded_by": {
-          "S": $scope.userParams
+          "S": $scope.userParams.name
+        },
+        "upload_company": {
+          "S": $scope.userParams.company
         },
         "post_date": {
           "S": now

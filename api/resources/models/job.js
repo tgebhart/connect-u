@@ -51,6 +51,19 @@ JobProvider.prototype.postJob = function(params, callback) {
   });
 };
 
+JobProvider.prototype.getCurrentJobs = function(params, callback) {
+  db.query(params, function(err, data) {
+    if(eff) {
+      console.log('err', err);
+      return callback(err);
+    }
+    else {
+      console.log('gotCurrentJobs on server');
+      return callback(null);
+    }
+  });
+};
+
 
 
 

@@ -21,7 +21,6 @@ angular.module("app").factory("JobResource", function($q, $http) {
     console.log('posting postJob');
     var post = $http.post('/api/business/upload-new-job', params)
     .then(function(post){
-      console.log('then');
       if(typeof post.data === undefined) {
         console.log('false postJob', post.data);
         return $q.reject(post.data);
@@ -29,6 +28,21 @@ angular.module("app").factory("JobResource", function($q, $http) {
       else {
         console.log('true');
         callback(true);
+      }
+    });
+  };
+
+  JobResource.prototype.getCurrentJobs = function(params, callback) {
+    console.log('getting current jobs');
+    var get = $http.get('/api/business/get-current-jobs', params)
+    .then(function(get){
+      if(typeof get.data === undefined) {
+        console.log('false getCurrentJobs', get.data);
+        return $q.reject(post.data);
+      }
+      else {
+        console.log('success getJobs');
+        callback(get);
       }
     });
   };

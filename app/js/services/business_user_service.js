@@ -1,6 +1,6 @@
 angular.module("app").service('BusinessUserService', function () {
         var postParams = {};
-        var user = '';
+        var user = {};
 
         return {
             getPostParams: function () {

@@ -78,4 +78,17 @@ router.post('/api/business/upload-new-job', jsonParser, function(req, res, next)
   });
 });
 
+router.get('/api/business/get-current-jobs', jsonParser, function(req, res, next) {
+  console.log('get bbody', req.body);
+  JobProvider.getCurrentJobs(req.body, function(err) {
+    if(err) {
+      console.log('Im mr createrror', err);
+    }
+    else {
+      console.log('router success get current jobs');
+      res.send('got jobs');
+    }
+  });
+});
+
 module.exports = router;
