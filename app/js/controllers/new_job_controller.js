@@ -7,6 +7,10 @@ angular.module("app").controller('BusinessNewJobController', function($scope, $t
     id: '1'
   }];
 
+  $scope.cancel = function() {
+    $location.path('/business/home');
+  };
+
   $scope.addNewChoice = function() {
     var newItemNo = $scope.choices.length + 1;
     $scope.choices.push({

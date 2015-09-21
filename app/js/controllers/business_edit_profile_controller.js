@@ -1,5 +1,9 @@
 angular.module("app").controller('BusinessEditProfileController', function($scope, $location, AuthenticationService, $log, BusinessUserResource, BusinessUserService) {
 
+  $scope.cancel = function () {
+    $location.path('/business/home');
+  };
+
   $scope.user = {
     "company":"",
     "title": "",

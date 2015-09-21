@@ -4,7 +4,9 @@ angular.module("app").controller('BusinessCreateProfileController', function($sc
 
 };
 
-
+$scope.cancel = function() {
+  $location.path('/business/home');
+};
 
   $scope.addUser = function() {
 

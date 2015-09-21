@@ -12,8 +12,6 @@ var db = new AWS.DynamoDB({region:'us-west-2'});
 
 var creds = {
 bucket: 'job-extra-info',
-access_key: 'AKIAJEGLICDUDXGO7SQA',
-secret_key: '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'
 };
 
 var JobProvider = function(){
