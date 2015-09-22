@@ -29,3 +29,15 @@ Run
     $ lineman run
 
 Then open <localhost:8000> in your browser to see it running.
+
+
+### Connect to the Node API
+
+Install Nodemon
+
+    $ npm install -g nodemon
+
+Start the server
+
+    $ cd api
+    $ npm start
