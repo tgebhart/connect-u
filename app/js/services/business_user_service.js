@@ -12,15 +12,20 @@ angular.module("app").service('BusinessUserService', function () {
             },
 
             getUser: function () {
-              if(user !== ''){
-              return user;
+              if(user !== {}){
+                console.log('returnnig user', user);
+                return user;
             }
             else {
-              return 'test';
+              return {'user': {
+                'name': 'test',
+                'company': 'testco'
+              }};
             }
             },
-            setUser: function(user) {
-              this.user = user;
+            setUser: function(inputUser) {
+              console.log('set user', inputUser);
+              user = inputUser;
             }
 
         };

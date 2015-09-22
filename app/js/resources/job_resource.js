@@ -32,17 +32,21 @@ angular.module("app").factory("JobResource", function($q, $http) {
     });
   };
 
-  JobResource.prototype.getCurrentJobs = function(params, callback) {
-    console.log('getting current jobs');
-    var get = $http.get('/api/business/get-current-jobs', params)
+  JobResource.prototype.getCurrentJobs = function(input, callback) {
+    console.log('getting current jobs', input.user.company);
+    var get = $http({
+      url: '/api/business/get-current-jobs',
+      method: "GET",
+      params: input
+    })
     .then(function(get){
       if(typeof get.data === undefined) {
         console.log('false getCurrentJobs', get.data);
         return $q.reject(post.data);
       }
       else {
-        console.log('success getJobs');
-        callback(get);
+        console.log('success getJobs', get);
+        callback(get.data.Items[0]);
       }
     });
   };

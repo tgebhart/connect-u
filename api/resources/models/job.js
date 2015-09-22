@@ -52,14 +52,25 @@ JobProvider.prototype.postJob = function(params, callback) {
 };
 
 JobProvider.prototype.getCurrentJobs = function(params, callback) {
-  db.query(params, function(err, data) {
-    if(eff) {
+  var queryParams = {
+    'TableName': 'jobs',
+    'IndexName' : 'upload_company-index',
+    'KeyConditions' : {
+      'upload_company' : {
+        'ComparisonOperator' : 'EQ',
+        'AttributeValueList' : [{'S' : 'testco'}, ],
+      },
+    },
+    'Select' : 'ALL_ATTRIBUTES'
+  };
+  db.query(queryParams, function(err, data) {
+    if(err) {
       console.log('err', err);
       return callback(err);
     }
     else {
       console.log('gotCurrentJobs on server');
-      return callback(null);
+      return callback(data);
     }
   });
 };
