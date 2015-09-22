@@ -33,11 +33,11 @@ Then open <localhost:8000> in your browser to see it running.
 
 ### Connect to the Node API
 
-Install Nodemon
+Open a new terminal. Install Nodemon
 
     $ npm install -g nodemon
 
 Start the server
 
-    $ cd api
+    $ cd /connect-u/api
     $ npm start
