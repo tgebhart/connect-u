@@ -2,3 +2,6 @@
 @import 'style';
 @import 'profile';
 @import 'add_jobs';
+@import 'business_current_jobs';
+@import 'new_job';
+@import 'student_outreach';

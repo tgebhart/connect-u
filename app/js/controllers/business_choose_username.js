@@ -5,9 +5,7 @@ angular.module("app").controller('BusinessChooseUsernameController', function($s
 
     var checkUp = function(createParams, callback) {
       _.forEach(createParams.Item, function(value, thing) {
-        console.log(thing);
         if(value.S === undefined){
-          console.log('caught undefined', createParams.Item[thing]);
           createParams.Item[thing] = {"S": "null"};
         }
       });
@@ -21,7 +19,6 @@ angular.module("app").controller('BusinessChooseUsernameController', function($s
     _.forEach(createParams.Item, function(value, thing) {
       console.log(thing);
       if(value.S === undefined){
-        console.log('caught undefined', createParams.Item[thing]);
         createParams.Item[thing] = {"S": "null"};
       }
     });
@@ -31,10 +28,8 @@ angular.module("app").controller('BusinessChooseUsernameController', function($s
 
 
     checkUp(createParams, function(createParams) {
-      console.log('fixed post params', createParams);
       BusinessUserResource = new BusinessUserResource();
       var createUser = BusinessUserResource.create(createParams, function(val) {
-        console.log('createduserbackhome', createUser);
         if (val) {
           BusinessUserService.setPostParams(createParams);
           $location.path('/business/home');

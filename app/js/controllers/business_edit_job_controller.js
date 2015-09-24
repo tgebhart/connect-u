@@ -1,10 +1,12 @@
-angular.module("app").controller('BusinessNewJobController', function($scope, $timeout, $http, $location, AuthenticationService, $log, $templateCache, BusinessUserService, JobResource) {
+  angular.module("app").controller('BusinessEditJobController', function($scope, $timeout, $http, $location, AuthenticationService, $log, $templateCache, BusinessUserService, JobService, moment, JobResource) {
 
   $scope.userParams = BusinessUserService.getUser();
-  $scope.job = {};
+  $scope.clickedJob = JobService.getJob();
+  console.log('job in edit', $scope.job);
+  $scope.job = $scope.clickedJob;
+
 
   $scope.choices = [{
-    id: '1'
   }];
 
   $scope.cancel = function() {
@@ -36,13 +38,19 @@ angular.module("app").controller('BusinessNewJobController', function($scope, $t
   }];
 
   $scope.changedValue = function(item) {
+    console.log(item.name);
     $scope.contactText = item.name;
     $scope.itemList.push(item.name);
   };
 
   var checkUp = function(params, callback) {
     _.forEach(params.Item, function(value, thing) {
+      console.log(thing);
       if (value.S === undefined && value.SS === undefined) {
+        console.log('!!!!===!!!', $scope.clickedJob.thing);
+        if($scope.clickedJob.thing.S !== 'null'){
+          params.Item[thing] = {"S" : $scope.clickedJob.value.S};
+        }
         params.Item[thing] = {
           "S": "null"
         };
@@ -61,6 +69,7 @@ angular.module("app").controller('BusinessNewJobController', function($scope, $t
 
     $scope.job.workers_required = [];
     _.forEach($scope.choices, function(choice) {
+      console.log('choice', choice);
       $scope.job.workers_required.push(choice.name + ' ' + choice.id);
     });
 
@@ -123,8 +132,10 @@ angular.module("app").controller('BusinessNewJobController', function($scope, $t
     }
 
     checkUp(postParams, function(postParams) {
+      console.log('fixed post params', postParams);
       //JobResource = new JobResource();
       var postJob = JobResource.postJob(postParams, function(val) {
+        console.log('createdjobbackhome', val);
         if (val) {
           $location.path('/business/home');
         }
@@ -202,4 +213,16 @@ angular.module("app").controller('BusinessNewJobController', function($scope, $t
   };
 
 
-});
+})
+
+.directive('dynamicPlaceholder',
+    function() {
+        return {
+            restrict: 'A',
+            link: function ($scope, element, attrs) {
+                attrs.$observe('dynamicPlaceholder', function(value) {
+                    element.attr('placeholder', value);
+                });
+            }
+        };
+    });

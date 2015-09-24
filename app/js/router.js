@@ -57,6 +57,11 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'BusinessCurrentJobsController'
   });
 
+  $routeProvider.when('/business/edit-job', {
+    templateUrl: 'business_edit_job.html',
+    controller: 'BusinessEditJobController'
+  });
+
   $routeProvider.when('/business/student-outreach', {
     templateUrl: 'business_student_outreach.html',
     controller: 'BusinessStudentOutreachController'

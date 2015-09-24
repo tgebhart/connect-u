@@ -1,0 +1,215 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);
+:root {
+  -webkit-transition: all 300ms;
+          transition: all 300ms;
+}
+:root.bg--big {
+  background-color: #00BCD4;
+}
+:root.bg--medium {
+  background-color: #E53935;
+}
+:root.bg--small {
+  background-color: #4527A0;
+}
+body {
+  height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+button {
+  border: none;
+  background: transparent;
+}
+.controller-container {
+  margin-bottom: 5%;
+  text-align: center;
+}
+.controller {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: inline-block;
+  margin: 0 20px;
+  font-size: 22px;
+  padding: 10px 0;
+  color: #FFF;
+  position: relative;
+}
+.controller:after {
+  content: "";
+  height: 3px;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  background-color: #FFF;
+}
+
+.spacing {
+  top: 0px;
+}
+
+.upper-space {
+  position: relative;
+  top: 50px;
+  right: 0px;
+
+}
+
+.controller.is_current:after {
+  width: 100%;
+}
+.controller:hover,
+.controller.is_current {
+  cursor: pointer;
+}
+/*http://viel-unterwegs.de/wp-content/uploads/2013/01/havanna.jpg */
+/*http://s12.postimg.org/gqu1npnjh/image.png */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+.flip3D {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  background-color: #EBEAEA;
+  font-size: 16pt;
+  font-family: open sans;
+  font-weight: 300;
+  margin: 20px;
+}
+.flip3D .front {
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  -webkit-transform: perspective(8000px) rotateY(0deg);
+  transform: perspective(8000px) rotateY(0deg);
+  background: #1976D2;
+  color: #fff;
+  border-radius: 1, 5px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: transform 1s linear 0s;
+  -moz-transition: transform 1s linear 0s;
+  -ms-transition: transform 1s linear 0s;
+  -o-transition: transform 1s linear 0s;
+  transition: transform 1s linear 0s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background: url(http://s12.postimg.org/gqu1npnjh/image.png);
+  background-position: bottom;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.flip3D .front .about {
+  padding: 30px;
+  color: black;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+}
+.flip3D .front .about h4 {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.flip3D .front .about p {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.flip3D .front .turn {
+  padding: 30px;
+  background: #222222;
+  background: rgba(34, 34, 34, 0.75);
+}
+.flip3D .front .turn p {
+  color: white;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  text-transform-font-size: 16px;
+  text-transform-letter-spacing: 1px;
+}
+.flip3D:hover .front {
+  -webkit-transform: perspective(8000px) rotateY(180deg);
+  transform: perspective(8000px) rotateY(180deg);
+}
+.flip3D .back {
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  -webkit-transform: perspective(8000px) rotateY(180deg);
+  transform: perspective(8000px) rotateY(180deg);
+  background: #1976D2;
+  color: #212121;
+  border-radius: 1, 5px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: transform 1s linear 0s;
+  -moz-transition: transform 1s linear 0s;
+  -ms-transition: transform 1s linear 0s;
+  -o-transition: transform 1s linear 0s;
+  transition: transform 1s linear 0s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background: #ffffff;
+}
+.flip3D .back .backHeader {
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+  color: white;
+  margin: 0px;
+  background-color: rgba(34, 34, 34, 0.75);
+}
+.flip3D .back .backHeader h4 {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.flip3D .back .backHeader p {
+  font-weight: 300;
+  margin: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.flip3D .back .backContent div {
+  display: inline-block;
+  margin: 5px;
+}
+.flip3D .back .backContent div h6 {
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.flip3D .back .backContent div p {
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.flip3D .back .backContent div p a {
+  link-style: none;
+  text-decoration: none;
+  color: #9E9E9E;
+  margin-left: 25px;
+}
+.flip3D:hover .back {
+  -webkit-transform: perspective(8000px) rotateY(0deg);
+  transform: perspective(8000px) rotateY(0deg);
+}

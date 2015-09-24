@@ -36,11 +36,9 @@ angular.module("app").controller('BusinessEditProfileController', function($scop
       }
     });
     if(sendToDB){
-    console.log('add user called', $scope.user);
     BusinessUserService.setPostParams(createParams);
     BusinessUserResource = new BusinessUserResource();
     var createdUser = BusinessUserResource.create(createParams);
-    console.log('createduserbackhome', createdUser);
   }
   else {
     console.log('fill in my form pls');

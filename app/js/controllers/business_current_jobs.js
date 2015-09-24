@@ -1,5 +1,11 @@
-angular.module("app").controller('BusinessCurrentJobsController', function($scope, $location, AuthenticationService, $log, BusinessUserService, JobResource) {
+angular.module("app").controller('BusinessCurrentJobsController', function($scope, $location, AuthenticationService, $log, BusinessUserService, JobService, JobResource) {
 
+  $scope.jobsLoaded = false;
+  $scope.currentJobs = {};
+  $scope.jobTitle = [];
+  $scope.uploadCompany = [];
+  $scope.description = [];
+  $scope.numJobs = 0;
   var userModel = {
     'user': {
       'name': 'test',
@@ -11,12 +17,22 @@ angular.module("app").controller('BusinessCurrentJobsController', function($scop
   $scope.user = BusinessUserService.getUser();
   console.log('scope.user', $scope.user);
 
-  $scope.currentJobs = JobResource.getCurrentJobs($scope.user, function(callback) {
+  JobResource.getCurrentJobs($scope.user, function(callback) {
       console.log('current jobs', callback);
+      $scope.numJobs = callback.length;
+      $scope.currentJobs = callback;
+      for (i=0; i < callback.length; i++){
+        $scope.jobTitle[i] = callback[i].title.S;
+        $scope.uploadCompany[i] = callback[i].upload_company.S;
+        $scope.description[i] = callback[i].description.S;
+      }
+          $scope.jobsLoaded = true;
   });
 
-
-
+  $scope.clickEdit = function(job) {
+    JobService.setJob(job);
+    $location.path('/business/edit-job');
+  };
 
 
 

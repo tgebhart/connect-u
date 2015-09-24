@@ -31,7 +31,6 @@ JobProvider.prototype.extraUpload = function(params, callback) {
       return callback(err);
     }
     else {
-      console.log('extra upload');
       return callback(null);
     }
   });
@@ -45,7 +44,6 @@ JobProvider.prototype.postJob = function(params, callback) {
       return callback(err);
     }
     else {
-      console.log('postJob');
       return callback(null);
     }
   });
@@ -58,7 +56,7 @@ JobProvider.prototype.getCurrentJobs = function(params, callback) {
     'KeyConditions' : {
       'upload_company' : {
         'ComparisonOperator' : 'EQ',
-        'AttributeValueList' : [{'S' : 'testco'}, ],
+        'AttributeValueList' : [{'S' : params}, ],
       },
     },
     'Select' : 'ALL_ATTRIBUTES'
@@ -68,8 +66,7 @@ JobProvider.prototype.getCurrentJobs = function(params, callback) {
       console.log('err', err);
       return callback(err);
     }
-    else {
-      console.log('gotCurrentJobs on server');
+      else {
       return callback(data);
     }
   });

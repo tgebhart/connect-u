@@ -31,7 +31,6 @@ ArticleProvider.prototype.scanTable = function(callback){
       return callback(error);
     }
     else {
-      console.log('article collection:', article_collection);
       return callback(null, article_collection);
     }
   });

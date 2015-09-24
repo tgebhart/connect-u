@@ -1,0 +1,179 @@
+<!doctype html>
+<div ng-app="app" ng-controller="BusinessNewJobController">
+  <div class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header"><a class="navbar-brand" href="#">Connect-U</a>
+          <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="glyphicon glyphicon-bar"></span>
+            <span class="glyphicon glyphicon-bar"></span>
+            <span class="glyphicon glyphicon-bar"></span>
+          </a>
+        </div>
+        <div class="navbar-collapse">
+          <ul id="busname" class="nav navbar-nav navbar-center">
+            <li role="menuitem"><a href="#">Business Name</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <div class="btn-group" dropdown is-open="status.isopen">
+              <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+                Profile
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+                <li role="menuitem"><a href="/business/profile">Your Profile</a></li>
+                <li role="menuitem"><a href="#">Help</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#" ng-click="logout()">Logout</a></li>
+              </ul>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--start sidebar-->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <ul id="nav-mobile" class="side-nav fixed">
+          <li class="logo">
+          </li>
+          <li class="active"><a href="/business/add-jobs">Add Jobs</a>
+          </li>
+          <li class="active"><a href="/business/current-jobs">Current Jobs</a>
+          </li>
+          <li class="active"><a href="/business/student-outreach">Student Outreach</a>
+          </li>
+          <li class="active"><a href="/business/help">Help</a>
+          </li>
+        </ul>
+      </div>
+      <!--/.well -->
+    </div>
+    <!--/sidebar-nav-fixed -->
+  </div>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row head-space">
+      <div class="panel panel-primary dialog-panel">
+        <div class="panel-heading">
+          <h2>Edit Job</h2>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <div class="form-group">
+                <label class="control-label col-md-2 col-md-offset-2" for="id_company">Job Title</label>
+                <div class="col-md-8">
+                  <div class="col-md-10 ">
+                    <div class="form-group internal">
+                      <input class="form-control" id="job_title" dynamic-placeholder='{{clickedJob.title.S}}' type="text" ng-model="job.title"></input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <label class="control-label col-md-2 col-md-offset-2" for="workers_required">Workers Required</label>
+              <div class="col-md-8">
+                <div class="col-md-10 ">
+                  <div class="form-group internal" data-ng-repeat="specialization in clickedJob.workers_required.SS">
+                    <input class="form-control" id="worker_specialization" dynamic-placeholder='{{specialization}}' ng-model="choice.name" type="text">
+                  </div>
+                  <div class="form-group internal" data-ng-repeat="choice in choices">
+                    <input class="form-control" id="worker_specialization" ng-model="choice.name" type="text">
+                  </div>
+                </div>
+                <div class="col-md-1">
+                  <button id="add_worker_button" ng-click="addNewChoice()" title="Add another worker" class="btn btn-primary outline fa fa-plus"></button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-md-offset-2" for="id_description">Job Description</label>
+              <div class="col-md-8">
+                <textarea class="form-control" id="description" placeholder="{{clickedJob.description.S}}" rows="3" ng-model="job.description"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-md-offset-2" for="id_description">Expectations</label>
+              <div class="col-md-8">
+                <textarea class="form-control" id="expectations" placeholder="{{clickedJob.expectations.S}}" rows="3" ng-model="job.expectations"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-md-offset-2" for="id_email">Point of Contact</label>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <div class="col-md-10">
+                    <input class="form-control" placeholder="{{clickedJob.poc_name.S}}" type="text" ng-model="job.poc_name">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group internal">
+                      <select class="form-control" id="preffered_method" ng-model="contactMethod" ng-change="changedValue(contactMethod)" data-ng-options="contactMethod as contactMethod.name for contactMethod in contactMethods">
+                        <option value="{{clickedJob.poc_method.S}}">Select</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-offset-1 col-md-6 ">
+                      <div class="form-group internal">
+                        <input class="form-control" id="poc_input" placeholder="{{clickedJob.poc_input.S}}" type="text" ng-model="job.poc_input">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="control-label col-md-2 col-md-offset-2" for="id_toggle">Toggle Something</label>
+              <div class="col-md-8">
+                <div class="make-switch" data-off-label="NO" data-on-label="YES" id="id_toggle_switch">
+                  <input id="id_toggle" type="checkbox">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-md-offset-2" for="deadline">Deadline</label>
+              <div class="col-md-6">
+                <p class="input-group">
+                  <input type="date" class="form-control" datepicker-popup="" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" format=true ng-required="true" close-text="Close" ng-model="job.deadline" />
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <label class="control-label col-md-2 col-md-offset-2" for="id_extra">Extra Information</label>
+            <button class="btn-primary fa fa-cloud-upload"><input name="file" type="file" file></input></button>
+              </div>
+              <div class="row col-md-offset-2">
+                <label class="control-label col-md-2 col-md-offset-2">Current:</label><p>{{clickedJob.extra_info_url.S}}</p>
+              </div>
+            </div>
+            <div class="row">
+
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <span class="col-md-offset-4 col-md-5">
+                  <button class="btn-lg btn-primary post-job" ng-click="upload()">Save Changes</button>
+                </span>
+                <div class="col-md-1">
+                  <button class="btn-lg btn-danger" style="float:right" type="submit" ng-click="cancel()">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+            </div>
+    </div>
+  </body>
+
+
+
+</div>

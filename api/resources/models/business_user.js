@@ -20,21 +20,18 @@ BusinessUserProvider.prototype.getAllUsers = function(callback) {
       return callback(error);
     }
     else {
-      console.log('user collection:', user_collection);
       return callback(null, user_collection);
     }
   });
 };
 
 BusinessUserProvider.prototype.createUser = function(info, callback) {
-  console.log('creating user in businessprovider');
   db.putItem(info, function(err, data) {
     if (err) {
       console.log('aws unable to add', err);
       return callback(error);
     }
     else {
-      console.log('aws succeeded in adding', info.firstname);
       return callback(null);
     }
   });
@@ -47,7 +44,6 @@ BusinessUserProvider.prototype.editUser = function(user, callback) {
       return callback(error);
     }
     else {
-      console.log('edited user: ', user);
       return callback(null);
     }
   });
