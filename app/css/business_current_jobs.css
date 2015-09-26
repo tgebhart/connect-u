@@ -82,8 +82,7 @@ button {
 .controller.is_current {
   cursor: pointer;
 }
-/*http://viel-unterwegs.de/wp-content/uploads/2013/01/havanna.jpg */
-/*http://s12.postimg.org/gqu1npnjh/image.png */
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 .flip3D {
   position: relative;
@@ -96,6 +95,9 @@ button {
   margin: 20px;
 }
 .flip3D .front {
+  -moz-box-shadow: 5px 5px 5px #888;
+  -webkit-box-shadow: 5px 5px 5px #888;
+    box-shadow: 5px 5px 5px #888;
   position: absolute;
   height: 300px;
   width: 300px;
@@ -111,7 +113,6 @@ button {
   -ms-transition: transform 1s linear 0s;
   -o-transition: transform 1s linear 0s;
   transition: transform 1s linear 0s;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   background: url(http://s12.postimg.org/gqu1npnjh/image.png);
   background-position: bottom;
   -webkit-background-size: cover;
@@ -147,10 +148,17 @@ button {
   text-transform-letter-spacing: 1px;
 }
 .flip3D:hover .front {
+  cursor: pointer;
+  -moz-box-shadow: 0px 0px 0px #888;
+  -webkit-box-shadow: 0px 0px 0px #888;
+    box-shadow: 0px 0px 0px #888;
   -webkit-transform: perspective(8000px) rotateY(180deg);
   transform: perspective(8000px) rotateY(180deg);
 }
 .flip3D .back {
+  -moz-box-shadow: 5px 5px 5px #888;
+  -webkit-box-shadow: 5px 5px 5px #888;
+    box-shadow: 5px 5px 5px #888;
   position: absolute;
   height: 300px;
   width: 300px;
@@ -166,7 +174,6 @@ button {
   -ms-transition: transform 1s linear 0s;
   -o-transition: transform 1s linear 0s;
   transition: transform 1s linear 0s;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   background: #ffffff;
 }
 .flip3D .back .backHeader {
@@ -210,6 +217,7 @@ button {
   margin-left: 25px;
 }
 .flip3D:hover .back {
+    cursor: pointer;
   -webkit-transform: perspective(8000px) rotateY(0deg);
   transform: perspective(8000px) rotateY(0deg);
 }

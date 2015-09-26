@@ -1,5 +1,5 @@
 <!doctype html>
-<div ng-app="app" ng-controller="BusinessNewJobController">
+<div ng-app="app" ng-controller="BusinessEditJobController">
   <div class="navbar navbar-fixed-top navbar-default">
     <div class="container-fluid">
       <div class="row">
@@ -67,20 +67,17 @@
           <form class="form-horizontal" role="form">
             <div class="form-group">
               <div class="form-group">
-                <label class="control-label col-md-2 col-md-offset-2" for="id_company">Job Title</label>
-                <div class="col-md-8">
-                  <div class="col-md-10 ">
+                <div class="col-md-12">
                     <div class="form-group internal">
-                      <input class="form-control" id="job_title" dynamic-placeholder='{{clickedJob.title.S}}' type="text" ng-model="job.title"></input>
+                      <h1>{{job.title.S}}</h1>
                     </div>
-                  </div>
                 </div>
               </div>
               <label class="control-label col-md-2 col-md-offset-2" for="workers_required">Workers Required</label>
               <div class="col-md-8">
                 <div class="col-md-10 ">
-                  <div class="form-group internal" data-ng-repeat="specialization in clickedJob.workers_required.SS">
-                    <input class="form-control" id="worker_specialization" dynamic-placeholder='{{specialization}}' ng-model="choice.name" type="text">
+                  <div class="form-group internal" data-ng-repeat="specialization in job.workers_required.SS">
+                    <p class="form-control" id="worker_specialization">{{specialization}}</p>
                   </div>
                   <div class="form-group internal" data-ng-repeat="choice in choices">
                     <input class="form-control" id="worker_specialization" ng-model="choice.name" type="text">
@@ -94,13 +91,13 @@
             <div class="form-group">
               <label class="control-label col-md-2 col-md-offset-2" for="id_description">Job Description</label>
               <div class="col-md-8">
-                <textarea class="form-control" id="description" placeholder="{{clickedJob.description.S}}" rows="3" ng-model="job.description"></textarea>
+                <textarea class="form-control" id="description" rows="3" ng-model="job.description.S"></textarea>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-2 col-md-offset-2" for="id_description">Expectations</label>
               <div class="col-md-8">
-                <textarea class="form-control" id="expectations" placeholder="{{clickedJob.expectations.S}}" rows="3" ng-model="job.expectations"></textarea>
+                <textarea class="form-control" id="expectations" rows="3" ng-model="job.expectations.S"></textarea>
               </div>
             </div>
             <div class="form-group">
@@ -108,19 +105,19 @@
               <div class="col-md-7">
                 <div class="form-group">
                   <div class="col-md-10">
-                    <input class="form-control" placeholder="{{clickedJob.poc_name.S}}" type="text" ng-model="job.poc_name">
+                    <input class="form-control" type="text" ng-model="job.poc_name.S">
                   </div>
                   <div class="col-md-2">
                     <div class="form-group internal">
                       <select class="form-control" id="preffered_method" ng-model="contactMethod" ng-change="changedValue(contactMethod)" data-ng-options="contactMethod as contactMethod.name for contactMethod in contactMethods">
-                        <option value="{{clickedJob.poc_method.S}}">Select</option>
+                        <option value="{{job.contact_method.S}}">Select</option>
                       </select>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-offset-1 col-md-6 ">
                       <div class="form-group internal">
-                        <input class="form-control" id="poc_input" placeholder="{{clickedJob.poc_input.S}}" type="text" ng-model="job.poc_input">
+                        <input class="form-control" id="poc_input" type="text" ng-model="job.poc_input.S">
                       </div>
                     </div>
                   </div>
@@ -141,7 +138,7 @@
               <label class="control-label col-md-2 col-md-offset-2" for="deadline">Deadline</label>
               <div class="col-md-6">
                 <p class="input-group">
-                  <input type="date" class="form-control" datepicker-popup="" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" format=true ng-required="true" close-text="Close" ng-model="job.deadline" />
+                  <input type="date" class="form-control" datepicker-popup="" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" format=true ng-required="true" close-text="Close" ng-model="job.deadline.S" />
                 </p>
               </div>
             </div>

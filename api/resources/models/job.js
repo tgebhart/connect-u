@@ -49,6 +49,18 @@ JobProvider.prototype.postJob = function(params, callback) {
   });
 };
 
+JobProvider.prototype.updateJob = function(params, callback) {
+  db.updateItem(params, function(err, data) {
+    if(err) {
+      console.log('error', err);
+      return callback(err);
+    }
+    else {
+      return callback(null);
+    }
+  });
+};
+
 JobProvider.prototype.getCurrentJobs = function(params, callback) {
   var queryParams = {
     'TableName': 'jobs',

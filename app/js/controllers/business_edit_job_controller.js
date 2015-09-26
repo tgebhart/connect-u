@@ -1,12 +1,14 @@
   angular.module("app").controller('BusinessEditJobController', function($scope, $timeout, $http, $location, AuthenticationService, $log, $templateCache, BusinessUserService, JobService, moment, JobResource) {
 
+  $scope.job = {};
   $scope.userParams = BusinessUserService.getUser();
   $scope.clickedJob = JobService.getJob();
-  console.log('job in edit', $scope.job);
   $scope.job = $scope.clickedJob;
-
+  $scope.job.deadline.S = new Date($scope.clickedJob.deadline.S);
+  console.log($scope.job.deadline.S);
 
   $scope.choices = [{
+    id: '1'
   }];
 
   $scope.cancel = function() {
@@ -44,14 +46,10 @@
   };
 
   var checkUp = function(params, callback) {
-    _.forEach(params.Item, function(value, thing) {
-      console.log(thing);
-      if (value.S === undefined && value.SS === undefined) {
-        console.log('!!!!===!!!', $scope.clickedJob.thing);
-        if($scope.clickedJob.thing.S !== 'null'){
-          params.Item[thing] = {"S" : $scope.clickedJob.value.S};
-        }
-        params.Item[thing] = {
+    _.forEach(params.AttributeUpdates, function(item) {
+      if (item.Value.S === undefined && item.Value.SS === undefined) {
+        console.log('hey', item.Value);
+        item.Value = {
           "S": "null"
         };
       }
@@ -61,13 +59,13 @@
 
 
   $scope.upload = function() {
-    // Configure The S3 Object
+
 
     JobResource = new JobResource();
     var formData = new FormData();
     $scope.userParams = BusinessUserService.getUser();
 
-    $scope.job.workers_required = [];
+    $scope.job.workers_required = $scope.clickedJob.workers_required.SS;
     _.forEach($scope.choices, function(choice) {
       console.log('choice', choice);
       $scope.job.workers_required.push(choice.name + ' ' + choice.id);
@@ -80,48 +78,56 @@
 
     var postParams = {
       "TableName": "jobs",
-      "Item": {
+      "Key" : {
         "title": {
-          "S": $scope.job.title
+          "S": $scope.job.title.S
         },
+      },
+      "AttributeUpdates" : {
         "workers_required": {
-          "SS": $scope.job.workers_required
+          "Action" : "PUT",
+          "Value": {"SS": $scope.job.workers_required}
         },
         "description": {
-          "S": $scope.job.description
+          "Action" : "PUT",
+          "Value" : {"S": $scope.job.description.S}
         },
         "expectations": {
-          "S": $scope.job.expectations
+          "Action" : "PUT",
+          "Value" : {"S": $scope.job.expectations.S}
         },
         "poc_name": {
-          "S": $scope.job.poc_name
+          "Action" : "PUT",
+          "Value" : {"S": $scope.job.poc_name.S}
         },
         "poc_method": {
-          "S": $scope.contactText
+          "Action" : "PUT",
+          "Value" : {"S": $scope.contactText.S}
         },
         "poc_input": {
-          "S": $scope.job.poc_input
+          "Action" : "PUT",
+          "Value" : {"S": $scope.job.poc_input.S}
         },
         "deadline": {
-          "S": $scope.job.deadline
+          "Action" : "PUT",
+          "Value" : {"S": $scope.job.deadline.S}
         },
         "uploaded_by": {
-          "S": $scope.userParams.name
+          "Action" : "PUT",
+          "Value" : {"S": $scope.userParams.name}
         },
-        "upload_company": {
-          "S": $scope.userParams.company
-        },
-        "post_date": {
-          "S": now
-        },
-        "extra_info_url": {},
+        "extra_info_url": {
+          "Action" : "PUT",
+          "Value" : {"S" : $scope.job.extra_info_url.S},
       }
+    }
     };
 
     if ($scope.file) {
       postParams.Item.extra_info_url = {
         "S": "https://s3-us-west-2.amazonaws.com/job-extra-info/" + $scope.file.name
       };
+
       var params = {
         Key: $scope.file.name,
         ContentType: $scope.file.type,
@@ -134,7 +140,7 @@
     checkUp(postParams, function(postParams) {
       console.log('fixed post params', postParams);
       //JobResource = new JobResource();
-      var postJob = JobResource.postJob(postParams, function(val) {
+      var postJob = JobResource.editJob(postParams, function(val) {
         console.log('createdjobbackhome', val);
         if (val) {
           $location.path('/business/home');

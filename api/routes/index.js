@@ -2,13 +2,13 @@ var express = require('express');
 var router = express.Router();
 var parser = require('body-parser');
 var busboy = require('connect-busboy');
-var ArticleProvider = require('../resources/models/test.js');
 var BusinessUserProvider = require('../resources/models/business_user.js');
+var StudentUserProvider = require('../resources/models/student_user.js');
 var JobProvider = require('../resources/models/job.js');
 
-ArticleProvider = new ArticleProvider();
 BusinessUserProvider = new BusinessUserProvider();
 JobProvider = new JobProvider();
+StudentUserProvider = new StudentUserProvider();
 
 router.use(parser.urlencoded({extended: true }));
 
@@ -21,15 +21,23 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/api/test', function(req, res, next) {
-  ArticleProvider.scanTable(function(err, articleCollection) {
-    if (err) {
-      console.log('index', err);
-    } else {
-      res.send(articleCollection);
-
+router.post('/api/login', jsonParser, function(req, res, next) {
+  console.log('req.body', req.body);
+  BusinessUserProvider.login(req.body, function(err, user) {
+    if(err) {
+      StudentUserProvider.login(req.body, function(error, user) {
+        if(error) {
+          console.log('login err', error);
+          res.send('login error');
+        }
+        else {
+          res.send(user);
+        }
+      });
     }
-
+    else {
+      res.send(user);
+    }
   });
 });
 
@@ -64,7 +72,6 @@ router.post('/api/business/upload-extra-info', jsonParser, function(req, res, ne
 });
 
 router.post('/api/business/upload-new-job', jsonParser, function(req, res, next) {
-  console.log('request body',req.body);
   JobProvider.postJob(req.body, function(err) {
     if (err) {
       console.log('index', err);
@@ -84,5 +91,17 @@ router.get('/api/business/get-current-jobs', jsonParser, function(req, res, next
     }
   });
 });
+
+router.post('/api/business/edit-job', jsonParser, function(req, res, next) {
+  JobProvider.updateJob(req.body, function(err) {
+    if(err) {
+      console.log('index', err);
+    }
+    else {
+      res.send('job posted');
+    }
+  });
+});
+
 
 module.exports = router;

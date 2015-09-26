@@ -13,7 +13,30 @@ var BusinessUserProvider = function(){
 
 var user_collection = {};
 
-BusinessUserProvider.prototype.getAllUsers = function(callback) {
+BusinessUserProvider.prototype.login = function(user, callback) {
+  var queryParams = {
+    'TableName': 'business_users',
+    'IndexName' : 'username-index',
+    'KeyConditions' : {
+      'username' : {
+        'ComparisonOperator' : 'EQ',
+        'AttributeValueList' : [{'S' : user.username},],
+      },
+    },
+    'Select' : 'ALL_ATTRIBUTES'
+  };
+  db.query(queryParams, function(error, user_collection) {
+    if(error) {
+      console.log('aws login error', error);
+      return callback(error);
+    }
+    else {
+      return callback(null, user_collection);
+    }
+  });
+};
+
+BusinessUserProvider.prototype.getAllUsers = function(scanParams, callback) {
   db.scan(scanParams, function(error, user_collection){
     if(error){
       console.log('error', error);
