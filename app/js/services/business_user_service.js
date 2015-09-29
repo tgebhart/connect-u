@@ -7,13 +7,11 @@ angular.module("app").service('BusinessUserService', function () {
                 return postParams;
             },
             setPostParams: function(value) {
-                console.log('userservice postparams', value);
                 postParams = value;
             },
 
             getUser: function () {
               if(user !== {}){
-                console.log('returnnig user', user);
                 return user;
             }
             else {
@@ -24,7 +22,6 @@ angular.module("app").service('BusinessUserService', function () {
             }
             },
             setUser: function(inputUser) {
-              console.log('set user', inputUser);
               user = inputUser;
             }
 

@@ -3,7 +3,7 @@ angular.module("app").controller('AddJobsController', function($scope, $location
   if($cookies.get('company')){
       $scope.cookieCompany = $cookies.get('company');
   }
-  console.log($scope.cookieUser);
+  
   $scope.hello = function(){
     $location.path('/business/new-job');
   };

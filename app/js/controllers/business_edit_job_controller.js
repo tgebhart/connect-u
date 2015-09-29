@@ -9,7 +9,6 @@
   $scope.clickedJob = JobService.getJob();
   $scope.job = $scope.clickedJob;
   $scope.job.deadline.S = new Date($scope.clickedJob.deadline.S);
-  console.log($scope.job.deadline.S);
 
   $scope.choices = [{
     id: '1'
@@ -44,7 +43,6 @@
   }];
 
   $scope.changedValue = function(item) {
-    console.log(item.name);
     $scope.contactText = item.name;
     $scope.itemList.push(item.name);
   };
@@ -52,7 +50,6 @@
   var checkUp = function(params, callback) {
     _.forEach(params.AttributeUpdates, function(item) {
       if (item.Value.S === undefined && item.Value.SS === undefined) {
-        console.log('hey', item.Value);
         item.Value = {
           "S": "null"
         };
@@ -71,7 +68,6 @@
 
     $scope.job.workers_required = $scope.clickedJob.workers_required.SS;
     _.forEach($scope.choices, function(choice) {
-      console.log('choice', choice);
       $scope.job.workers_required.push(choice.name + ' ' + choice.id);
     });
 
@@ -142,10 +138,8 @@
     }
 
     checkUp(postParams, function(postParams) {
-      console.log('fixed post params', postParams);
       //JobResource = new JobResource();
       var postJob = JobResource.editJob(postParams, function(val) {
-        console.log('createdjobbackhome', val);
         if (val) {
           $location.path('/business/home');
         }
