@@ -1,8 +1,5 @@
 angular.module("app").controller('IAmAController', function($scope, $location, $cookies, AuthenticationService, $log) {
-  $scope.cookieCompany = '';
-  if($cookies.get('company')){
-      $scope.cookieCompany = $cookies.get('company');
-  }
+
   $scope.businessCheck = false;
   $scope.studentCheck = false;
 

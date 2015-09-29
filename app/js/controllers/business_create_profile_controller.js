@@ -8,7 +8,7 @@ angular.module("app").controller('BusinessCreateProfileController', function($sc
 };
 
 $scope.cancel = function() {
-  $location.path('/business/home');
+  $location.path('/login');
 };
 
   $scope.addUser = function() {

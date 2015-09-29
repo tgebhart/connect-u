@@ -13,7 +13,7 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
   });
 
   $routeProvider.when('/business/choose_username', {
-    templateUrl: 'choose_username.html',
+    templateUrl: 'business_choose_username.html',
     controller: 'BusinessChooseUsernameController'
   });
 
@@ -50,6 +50,11 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
   $routeProvider.when('/business/create-profile', {
     templateUrl: 'business_create_profile.html',
     controller: 'BusinessCreateProfileController'
+  });
+
+  $routeProvider.when('/student/create-profile', {
+    templateUrl: 'student_create_profile.html',
+    controller: 'StudentCreateProfileController'
   });
 
   $routeProvider.when('/business/current-jobs', {

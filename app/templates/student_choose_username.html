@@ -1,0 +1,36 @@
+<!doctype html>
+<div ng-app="app" ng-controller="StudentChooseUsernameController">
+<body>
+  <div class="container-fluid">
+    <div class="panel panel-primary dialog-panel">
+      <div class="panel-heading">
+        <h2>Choosse Username and Password: </h2>
+      </div>
+      <div class="row">
+      <div class="form-group">
+        <label class="control-label col-md-2 col-md-offset-2" for="id_username">Username</label>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="col-md-11">
+              <input class="form-control" id="id_username" placeholder="We recommend Email Address" type="text" ng-model="user.username" required>
+            </div>
+          </div>
+        </div>
+
+        <label class="control-label col-md-2 col-md-offset-2" for="id_password">Password</label>
+        <div class="col-md-6">
+            <div class="col-md-11">
+              <input class="form-control" id="id_password" placeholder="" type="password" ng-model="user.password" required>
+            </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-3 col-md-3">
+          <button class="btn-lg btn-primary" type="submit" ng-click="login()">Login</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</body>
+</div>

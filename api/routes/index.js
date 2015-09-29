@@ -104,4 +104,66 @@ router.post('/api/business/edit-job', jsonParser, function(req, res, next) {
 });
 
 
+
+
+//==================Student============================//
+
+
+
+
+
+router.post('/api/student/edit-profile', function(req, res, next) {
+  StudentUserProvider.editUser(req.createParams, function(err) {
+    if (err) {
+      console.log('index', err);
+    } else {
+      res.send('user created');
+    }
+  });
+});
+
+router.post('/api/student/create-profile', function(req, res, next) {
+  StudentUserProvider.createUser(req.body, function(err) {
+    if (err) {
+      console.log('index', err);
+    } else {
+      res.send('user created');
+    }
+  });
+});
+
+router.post('/api/student/upload-extra-info', jsonParser, function(req, res, next) {
+  StudentUserProvider.uploadExtraInfo(req.body, function(err) {
+    if (err) {
+      console.log('index', err);
+    } else {
+      res.send('extra info uploaded');
+    }
+  });
+});
+
+router.post('/api/student/get-job', jsonParser, function(req, res, next) {
+  JobProvider.postJob(req.body, function(err) {
+    if (err) {
+      console.log('index', err);
+    } else {
+      res.send('job posted');
+    }
+  });
+});
+
+router.get('/api/student/get-all-jobs', jsonParser, function(req, res, next) {
+  JobProvider.getCurrentJobs(req.query.user, function(data, err) {
+    if(err) {
+      console.log('index', err);
+    }
+    else {
+      res.send(data);
+    }
+  });
+});
+
+
+
+
 module.exports = router;
