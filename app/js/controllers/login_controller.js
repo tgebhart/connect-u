@@ -14,6 +14,7 @@ angular.module("app").controller('LoginController', function($scope, $location, 
       if(callback.Items[0] !== undefined) {
         if(callback.Items[0].company !== undefined) {
           BusinessUserService.setUser(callback.Items[0]);
+
           $cookies.put('company', callback.Items[0].company.S);
           $cookies.put('company-description', callback.Items[0]['company-description'].S);
           $cookies.put('company-division', callback.Items[0]['company-division'].S);
@@ -26,8 +27,18 @@ angular.module("app").controller('LoginController', function($scope, $location, 
           $cookies.put('username', callback.Items[0].username.S);
           $location.path('/business/home');
         }
-        if(callback.Items[0].school !== undefined) {
-          $location.path('/business/home');
+        if(callback.Items[0].year !== undefined) {
+          BusinessUserService.setUser(callback.Items[0]);
+
+          $cookies.put('username', callback.Items[0].username.S);
+          $cookies.put('firstname', callback.Items[0].firstname.S);
+          $cookies.put('lastname', callback.Items[0].lastname.S);
+          $cookies.put('email', callback.Items[0].email.S);
+          $cookies.put('year', callback.Items[0].year.S);
+          $cookies.put('major', callback.Items[0].major.S);
+          $cookies.put('tagline', callback.Items[0].tagline.S);
+
+          $location.path('/student/home');
         }
       }
       else {

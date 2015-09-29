@@ -1,25 +1,56 @@
-<div id="home" class="row">
-  <div class="large-6 large-offset-3">
-    <h2>Welcome {{ title }}!</h2>
-
-    <div class="alert-box">{{ message }}</div>
-
-    <ul class="small-block-grid-2">
-      <li>
-        <img class="th" src="img/logo.png" shows-message-when-hovered message="First Image.">
-      </li>
-      <li>
-        <img class="th" src="img/logo.png" shows-message-when-hovered message="Dos.">
-      </li>
-    </ul>
-
+<!doctype html>
+<div ng-app="app" ng-controller="StudentHomeController">
+<div class="navbar navbar-fixed-top navbar-default">
+  <div class="container-fluid">
     <div class="row">
-      <div class="large-12 columns">
-        <button ng-click="logout()" class="button large expand radius">Log Out</button>
+      <div class="navbar-header"><a class="navbar-brand" href="#">Connect-U</a>
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="glyphicon glyphicon-bar"></span>
+          <span class="glyphicon glyphicon-bar"></span>
+          <span class="glyphicon glyphicon-bar"></span>
+        </a>
       </div>
-      <div>
-        <button ng-click="hello()" class="button large expand radius">hey</button>
+      <div class="navbar-collapse">
+        <ul id="busname" class="nav navbar-nav navbar-center">
+          <li role="menuitem"><a href="/business/home">{{cookieFirstName}}</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <div class="btn-group" dropdown is-open="status.isopen">
+        <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+          Profile <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+          <li role="menuitem"><a href="/student/profile">Your Profile</a></li>
+          <li role="menuitem"><a href="#">Help</a></li>
+          <li class="divider"></li>
+          <li role="menuitem"><a href="#"  ng-click="logout()">Logout</a></li>
+        </ul>
+      </div>
+        </ul>
       </div>
     </div>
   </div>
+</div>
+<!--/.navbar-collapse -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <ul id="nav-mobile" class="side-nav fixed">
+          <li class="logo">
+          </li>
+            <li class="active"><a href="/student/dashboard">Dashboard</a>
+            </li>
+            <li class="active"><a href="/student/jobs">Jobs</a>
+            </li>
+            <li class="active"><a href="/student/chat">Chat</a>
+            </li>
+            <li class="active"><a href="#">Help</a>
+            </li>
+          </ul>
+        </div>
+        <!--/.well -->
+      </div>
+      <!--/sidebar-nav-fixed -->
+    </div>
 </div>

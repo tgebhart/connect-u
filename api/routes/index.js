@@ -25,6 +25,10 @@ router.post('/api/login', jsonParser, function(req, res, next) {
   console.log('req.body', req.body);
   BusinessUserProvider.login(req.body, function(err, user) {
     if(err) {
+      console.log('err', err);
+    }
+    else {
+      if(user.Count === 0){
       StudentUserProvider.login(req.body, function(error, user) {
         if(error) {
           console.log('login err', error);
@@ -35,9 +39,7 @@ router.post('/api/login', jsonParser, function(req, res, next) {
         }
       });
     }
-    else {
-      res.send(user);
-    }
+  }
   });
 });
 

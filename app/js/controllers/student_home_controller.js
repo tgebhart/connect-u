@@ -1,7 +1,9 @@
 angular.module("app").controller('StudentHomeController', function($scope, $location, $cookies, AuthenticationService, $log) {
 
-  $scope.title = "Home";
-  $scope.message = "Stuff";
+  $scope.cookieFirstName = '';
+  if($cookies.get('firstname')){
+      $scope.cookieFirstName = $cookies.get('firstname');
+  }
 
   var onLogoutSuccess = function(response) {
     $location.path('/login');

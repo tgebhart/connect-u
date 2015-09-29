@@ -19,7 +19,7 @@ var user_collection = {};
 
 StudentUserProvider.prototype.login = function(user, callback) {
   var queryParams = {
-    'TableName': 'Student_users',
+    'TableName': 'student_users',
     'IndexName': 'username-index',
     'KeyConditions': {
       'username': {

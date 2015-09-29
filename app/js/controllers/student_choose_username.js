@@ -1,9 +1,5 @@
 angular.module("app").controller('StudentChooseUsernameController', function($scope, $location, $cookies, AuthenticationService, $log, StudentUserService, StudentUserResource) {
 
-  $scope.cookieCompany = '';
-  if($cookies.get('company')){
-      $scope.cookieCompany = $cookies.get('company');
-  }
   $scope.user = {};
 
 
@@ -35,6 +31,14 @@ angular.module("app").controller('StudentChooseUsernameController', function($sc
       StudentUserResource = new StudentUserResource();
       var createUser = StudentUserResource.create(createParams, function(val) {
         if (val) {
+          $cookies.put('username', createParams.Item.username.S);
+          $cookies.put('firstname', createParams.Item.firstname.S);
+          $cookies.put('lastname', createParams.Item.lastname.S);
+          $cookies.put('email', createParams.Item.email.S);
+          $cookies.put('year', createParams.Item.year.S);
+          $cookies.put('major', createParams.Item.major.S);
+          $cookies.put('tagline', createParams.Item.tagline.S);
+          
           StudentUserService.setPostParams(createParams);
           $location.path('/student/home');
         }
