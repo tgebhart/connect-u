@@ -17,16 +17,6 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'BusinessChooseUsernameController'
   });
 
-  $routeProvider.when('/student/choose_username', {
-    templateUrl: 'student_choose_username.html',
-    controller: 'StudentChooseUsernameController'
-  });
-
-  $routeProvider.when('/student/home', {
-    templateUrl: 'student_home.html',
-    controller: 'StudentHomeController'
-  });
-
   $routeProvider.when('/business/home', {
     templateUrl: 'business_home.html',
     controller: 'BusinessHomeController'
@@ -91,6 +81,45 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
       }
     }
   });
+
+  //=============Student===========================//
+
+
+  $routeProvider.when('/student/choose_username', {
+    templateUrl: 'student_choose_username.html',
+    controller: 'StudentChooseUsernameController'
+  });
+
+  $routeProvider.when('/student/home', {
+    templateUrl: 'student_home.html',
+    controller: 'StudentHomeController'
+  });
+
+  $routeProvider.when('/student/dashboard', {
+    templateUrl: 'student_dashboard.html',
+    controller: 'StudentDashboardController'
+  });
+
+  $routeProvider.when('/student/jobs', {
+    templateUrl: 'student_jobs.html',
+    controller: 'StudentJobsController'
+  });
+
+  $routeProvider.when('/student/chat', {
+    templateUrl: 'student_chat.html',
+    controller: 'StudentChatController'
+  });
+
+  $routeProvider.when('/student/profile', {
+    templateUrl: 'student_edit_profile.html',
+    controller: 'StudentEditProfileController'
+  });
+
+
+
+
+
+
 
   $routeProvider.otherwise({ redirectTo: '/login' });
 
