@@ -13,6 +13,7 @@ module.exports = function (lineman) {
         "vendor/js/angular.js",
         "vendor/angular-bootstrap/ui-bootstrap.js",
         "vendor/js/**/*.js",
+        "vendor/js/angular-cookies.js",
         "vendor/js/angular-dashboard-framework.js",
         "vendor/angular-dashboard-framework/dist/angular-dashboard-framework.js",
         "vendor/js/aws-sdk.js",

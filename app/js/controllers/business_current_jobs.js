@@ -1,5 +1,10 @@
-angular.module("app").controller('BusinessCurrentJobsController', function($scope, $location, AuthenticationService, $log, BusinessUserService, JobService, JobResource) {
+angular.module("app").controller('BusinessCurrentJobsController', function($scope, $location, $cookies, AuthenticationService, $log, BusinessUserService, JobService, JobResource) {
 
+  $scope.cookieCompany = '';
+  if($cookies.get('company')){
+      $scope.cookieCompany = $cookies.get('company');
+  }
+  
   $scope.jobsLoaded = false;
   $scope.currentJobs = {};
   $scope.jobTitle = [];

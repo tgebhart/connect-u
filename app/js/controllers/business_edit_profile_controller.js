@@ -1,5 +1,9 @@
-angular.module("app").controller('BusinessEditProfileController', function($scope, $location, AuthenticationService, $log, BusinessUserResource, BusinessUserService) {
+angular.module("app").controller('BusinessEditProfileController', function($scope, $location, $cookies, AuthenticationService, $log, BusinessUserResource, BusinessUserService) {
 
+  $scope.cookieCompany = '';
+  if($cookies.get('company')){
+      $scope.cookieCompany = $cookies.get('company');
+  }
   $scope.cancel = function () {
     $location.path('/business/home');
   };

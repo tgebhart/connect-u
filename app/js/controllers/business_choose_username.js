@@ -1,5 +1,9 @@
-angular.module("app").controller('BusinessChooseUsernameController', function($scope, $location, AuthenticationService, $log, BusinessUserService, BusinessUserResource) {
+angular.module("app").controller('BusinessChooseUsernameController', function($scope, $location, $cookies, AuthenticationService, $log, BusinessUserService, BusinessUserResource) {
 
+  $scope.cookieCompany = '';
+  if($cookies.get('company')){
+      $scope.cookieCompany = $cookies.get('company');
+  }
   $scope.user = {};
 
 

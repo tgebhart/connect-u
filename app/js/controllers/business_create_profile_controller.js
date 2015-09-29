@@ -1,5 +1,8 @@
-angular.module("app").controller('BusinessCreateProfileController', function($scope, $location, AuthenticationService, $log, BusinessUserResource, BusinessUserService) {
-
+angular.module("app").controller('BusinessCreateProfileController', function($scope, $location, $cookies, AuthenticationService, $log, BusinessUserResource, BusinessUserService) {
+  $scope.cookieCompany = '';
+  if($cookies.get('company')){
+      $scope.cookieCompany = $cookies.get('company');
+  }
   $scope.user = {
 
 };

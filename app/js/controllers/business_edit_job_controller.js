@@ -1,5 +1,9 @@
-  angular.module("app").controller('BusinessEditJobController', function($scope, $timeout, $http, $location, AuthenticationService, $log, $templateCache, BusinessUserService, JobService, moment, JobResource) {
+  angular.module("app").controller('BusinessEditJobController', function($scope, $timeout, $cookies, $http, $location, AuthenticationService, $log, $templateCache, BusinessUserService, JobService, moment, JobResource) {
 
+    $scope.cookieCompany = '';
+    if($cookies.get('company')){
+        $scope.cookieCompany = $cookies.get('company');
+    }
   $scope.job = {};
   $scope.userParams = BusinessUserService.getUser();
   $scope.clickedJob = JobService.getJob();
