@@ -39,6 +39,9 @@ router.post('/api/login', jsonParser, function(req, res, next) {
         }
       });
     }
+    else {
+      res.send(user);
+    }
   }
   });
 });
