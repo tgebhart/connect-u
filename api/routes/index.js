@@ -118,11 +118,11 @@ router.post('/api/business/edit-job', jsonParser, function(req, res, next) {
 
 
 router.post('/api/student/edit-profile', function(req, res, next) {
-  StudentUserProvider.editUser(req.createParams, function(err) {
+  StudentUserProvider.editUser(req.body, function(err) {
     if (err) {
       console.log('index', err);
     } else {
-      res.send('user created');
+      res.send('user edit successful');
     }
   });
 });
@@ -147,6 +147,16 @@ router.post('/api/student/upload-extra-info', jsonParser, function(req, res, nex
   });
 });
 
+router.post('/api/student/upload-profile-pic', jsonParser, function(req, res, next) {
+  StudentUserProvider.uploadProfilePic(req.body, function(err) {
+    if (err) {
+      console.log('index', err);
+    } else {
+      res.send('prof pic uploaded');
+    }
+  });
+});
+
 router.post('/api/student/get-job', jsonParser, function(req, res, next) {
   JobProvider.postJob(req.body, function(err) {
     if (err) {
@@ -159,6 +169,18 @@ router.post('/api/student/get-job', jsonParser, function(req, res, next) {
 
 router.get('/api/student/get-all-jobs', jsonParser, function(req, res, next) {
   JobProvider.getCurrentJobs(req.query.user, function(data, err) {
+    if(err) {
+      console.log('index', err);
+    }
+    else {
+      res.send(data);
+    }
+  });
+});
+
+router.get('/api/student/get-user', jsonParser, function(req, res, next) {
+  console.log('reqbody', req.query.user);
+  StudentUserProvider.getUser(req.query.user, function(data, err) {
     if(err) {
       console.log('index', err);
     }

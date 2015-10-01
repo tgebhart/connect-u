@@ -37,6 +37,7 @@ angular.module("app").controller('LoginController', function($scope, $location, 
           $cookies.put('year', callback.Items[0].year.S);
           $cookies.put('major', callback.Items[0].major.S);
           $cookies.put('tagline', callback.Items[0].tagline.S);
+          $cookies.put('profile_pic_url', callback.Items[0].profile_pic_url.S);
 
           $location.path('/student/home');
         }

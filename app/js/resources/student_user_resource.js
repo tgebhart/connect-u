@@ -39,8 +39,20 @@ angular.module("app").factory("StudentUserResource", function($q, $http) {
     });
   };
 
-  StudentUserResource.prototype.get = function(user) {
-    $http.get('/api/student/get-user', user);
+  StudentUserResource.prototype.get = function(user, callback) {
+    var get = $http({
+      url: '/api/student/get-user',
+      method: "GET",
+      params: {'user': user}
+    })
+    .then(function(get){
+      if(typeof get.data === undefined) {
+        return $q.reject(get.data);
+      }
+      else {
+        callback(get.data.Items);
+      }
+    });
   };
 
   return StudentUserResource;

@@ -10,33 +10,33 @@ $scope.cancel = function() {
 
   $scope.addUser = function() {
 
-    var createParams = {
-        "TableName": "student_users",
-        "Item": {
-          "firstname": {"S" : $scope.user.firstname},
-          "lastname": {"S" : $scope.user.lastname},
-          "email":  {"S" : $scope.user.email},
-          "year": {"S" : $scope.user.year},
-          "major": {"S" : $scope.user.major},
-          "bio": {"S" : $scope.user.bio},
-          "tagline": {"S" : $scope.user.tagline},
-          "personal-website": {"S" : $scope.user.website},
-          "upload_info_url": {"S" : "null"}
+      var createParams = {
+          "TableName": "student_users",
+          "Item": {
+            "firstname": {"S" : $scope.user.firstname},
+            "lastname": {"S" : $scope.user.lastname},
+            "email":  {"S" : $scope.user.email},
+            "year": {"S" : $scope.user.year},
+            "major": {"S" : $scope.user.major},
+            "bio": {"S" : $scope.user.bio},
+            "tagline": {"S" : $scope.user.tagline},
+            "personal-website": {"S" : $scope.user.website},
+            "upload_info_url": {"S" : $scope.upload_info_url}
         }
       };
 
         if ($scope.file) {
           createParams.Item.upload_info_url = {
-            "S": "https://s3-us-west-2.amazonaws.com/student-extra-info/" + $scope.file.name
+            "S": "https://s3-us-west-2.amazonaws.com/student-extra-info/" + $scope.file.name + $scope.user.username
           };
-          var params = {
+          var infoParams = {
             Key: $scope.file.name,
             ContentType: $scope.file.type,
             Body: formData.append("file", $scope.file),
             ServerSideEncryption: 'AES256'
           };
-          StudentUserResource.uploadExtraInfo(params, function(callback) {
-            
+          StudentUserResource.uploadExtraInfo(infoParams, function(callback) {
+
           });
         }
 

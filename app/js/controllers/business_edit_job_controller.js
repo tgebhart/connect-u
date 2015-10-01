@@ -51,7 +51,7 @@
     _.forEach(params.AttributeUpdates, function(item) {
       if (item.Value.S === undefined && item.Value.SS === undefined) {
         item.Value = {
-          "S": "null"
+          "Null": true
         };
       }
     });
