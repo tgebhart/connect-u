@@ -3,14 +3,12 @@
 }
 .form-group.internal {
   margin-bottom: 0;
-  margin-top: 0;
 }
 
 .dialog-panel {
   margin: 50px;
-  padding-top: 20%;
   position: relative;
-  height: 75%;
+  height: 100%;
   width: 100%;
 }
 
@@ -22,7 +20,6 @@
 -moz-box-shadow: 1px 1px 5px #888;
 -webkit-box-shadow: 1px 1px 5px #888;
   box-shadow: 1px 1px 5px #888;
-  margin: 0;
 }
 
 label.control-label {

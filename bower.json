@@ -66,6 +66,6 @@
     "textAngular": "latest",
     "ui-bootstrap": "latest",
     "waypoints": "4",
-    "ng-file-upload": "latest",
+    "ng-file-upload": "latest"
   }
 }
