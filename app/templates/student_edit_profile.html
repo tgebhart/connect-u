@@ -1,157 +1,161 @@
 <!doctype html>
 <div ng-app="app" ng-controller="StudentEditProfileController">
-<div class="navbar navbar-fixed-top navbar-default">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="navbar-header"><a class="navbar-brand" href="#">Connect-U</a>
-        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="glyphicon glyphicon-bar"></span>
-          <span class="glyphicon glyphicon-bar"></span>
-          <span class="glyphicon glyphicon-bar"></span>
-        </a>
-      </div>
-      <div class="navbar-collapse">
-        <ul id="busname" class="nav navbar-nav navbar-center">
-          <li role="menuitem"><a href="/business/home">{{cookieFirstName}}</a>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <div class="btn-group" dropdown is-open="status.isopen">
-        <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
-          Profile <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-          <li role="menuitem"><a href="/business/profile">Your Profile</a></li>
-          <li role="menuitem"><a href="#">Help</a></li>
-          <li class="divider"></li>
-          <li role="menuitem"><a href="#"  ng-click="logout()">Logout</a></li>
-        </ul>
-      </div>
-        </ul>
+  <div class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navbar-header"><a class="navbar-brand" href="#">Connect-U</a>
+          <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="glyphicon glyphicon-bar"></span>
+            <span class="glyphicon glyphicon-bar"></span>
+            <span class="glyphicon glyphicon-bar"></span>
+          </a>
+        </div>
+        <div class="navbar-collapse">
+          <ul id="busname" class="nav navbar-nav navbar-center">
+            <li role="menuitem"><a href="/business/home">{{cookieFirstName}}</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <div class="btn-group" dropdown is-open="status.isopen">
+              <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+                Profile
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+                <li role="menuitem"><a href="/business/profile">Your Profile</a></li>
+                <li role="menuitem"><a href="#">Help</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#" ng-click="logout()">Logout</a></li>
+              </ul>
+            </div>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<body>
-  <div class="container-fluid">
-    <div class="row">
-    </div>
-    <div class="row">
-    <div class="panel panel-primary dialog-panel">
-      <div class="panel-heading">
-        <h2>Your Profile</h2>
-      </div>
-      <div class="panel-body">
-        <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <div class="row" ng-controller="StudentProfilePictureController">
-              <div class="col-md-4">
-                <img class="prof_pic" src="{{user.profile_pic_url.S}}">
-              </div>
-              <div class="row">
-                <label class="col-md-4" for="prof_pic">Edit</label>
-            <button class="btn-primary fa fa-cloud-upload"><input  name="file" type="file" file></input></button>
-              </div>
-            </div>
-          <div class="form-group">
-            <label class="control-label col-md-2 col-md-offset-2" for="id_firstname">First Name</label>
-            <div class="col-md-8">
-              <div class="col-md-10">
-                <div class="form-group internal">
-                  <input class="form-control col-md-8" id="id_adults" placeholder="" type="text" ng-model="user.firstname.S" required>
-                </div>
-              </div>
-            </div>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="panel panel-primary dialog-panel">
+          <div class="panel-heading">
+            <h2>Your Profile</h2>
           </div>
-          <div class="form-group">
-            <label class="control-label col-md-2 col-md-offset-2" for="id_lastname">Last Name</label>
-            <div class="col-md-8">
-              <div class="col-md-10">
-                <div class="form-group internal">
-                  <input class="form-control col-md-8" id="id_adults" placeholder="" type="text" ng-model="user.lastname.S" required>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-2 col-md-offset-2" for="id_firstname">Email</label>
-            <div class="col-md-8">
-              <div class="col-md-10">
-                <div class="form-group internal">
-                  <input class="form-control col-md-8" id="id_email" placeholder="" type="Email" ng-model="user.email.S" required>
-                </div>
-              </div>
-            </div>
-          </div>
-          <label class="control-label col-md-2 col-md-offset-2" for="id_year">Year</label>
-          <div class="col-md-8">
-              <div class="form-group internal">
-                <select class="form-control" id="id_year" ng-model="user.year.S">
-                  <option></option>
-                  <option>Freshman</option>
-                  <option>Sophomore</option>
-                  <option>Junior</option>
-                  <option>Senior</option>
-                  <option>Grad</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-2 col-md-offset-2" for="id_major">Major</label>
-              <div class="col-md-8">
-                <div class="col-md-10">
-                  <div class="form-group internal">
-                    <input class="form-control col-md-8" id="id_major" placeholder="" type="text" ng-model="user.major.S" required>
+          <div class="panel-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="row" ng-controller="StudentProfilePictureController">
+                  <div class="col-md-4">
+                    <img class="img-circle" src="{{user.profile_pic_url.S}}">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2" for="prof_pic">
+                      <button type="file" ngf-select="uploadFiles($file)"
+                      accept="image/*">Select File</button>
                   </div>
                 </div>
-              </div>
-            </div>
-          <div class="form-group">
-            <label class="control-label col-md-2 col-md-offset-2" for="id_toggle">Toggle Something</label>
-            <div class="col-md-8">
-              <div class="make-switch" data-off-label="NO" data-on-label="YES" id="id_toggle_switch">
-                <input id="id_toggle" type="checkbox">
-              </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2 col-md-offset-2" for="id_firstname">First Name</label>
+                  <div class="col-md-8">
+                    <div class="col-md-10">
+                      <div class="form-group internal">
+                        <input class="form-control col-md-8" id="id_adults" placeholder="" type="text" ng-model="user.firstname.S" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2 col-md-offset-2" for="id_lastname">Last Name</label>
+                  <div class="col-md-8">
+                    <div class="col-md-10">
+                      <div class="form-group internal">
+                        <input class="form-control col-md-8" id="id_adults" placeholder="" type="text" ng-model="user.lastname.S" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2 col-md-offset-2" for="id_firstname">Email</label>
+                  <div class="col-md-8">
+                    <div class="col-md-10">
+                      <div class="form-group internal">
+                        <input class="form-control col-md-8" id="id_email" placeholder="" type="Email" ng-model="user.email.S" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <label class="control-label col-md-2 col-md-offset-2" for="id_year">Year</label>
+                <div class="col-md-8">
+                  <div class="form-group internal">
+                    <select class="form-control" id="id_year" ng-model="user.year.S">
+                      <option></option>
+                      <option>Freshman</option>
+                      <option>Sophomore</option>
+                      <option>Junior</option>
+                      <option>Senior</option>
+                      <option>Grad</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2 col-md-offset-2" for="id_major">Major</label>
+                  <div class="col-md-8">
+                    <div class="col-md-10">
+                      <div class="form-group internal">
+                        <input class="form-control col-md-8" id="id_major" placeholder="" type="text" ng-model="user.major.S" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2 col-md-offset-2" for="id_toggle">Toggle Something</label>
+                  <div class="col-md-8">
+                    <div class="make-switch" data-off-label="NO" data-on-label="YES" id="id_toggle_switch">
+                      <input id="id_toggle" type="checkbox">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2 col-md-offset-2" for="id_bio">Bio</label>
+                  <div class="col-md-8">
+                    <textarea class="form-control" id="id_bio" placeholder="Tell us a bit about yourself" rows="3" ng-model="user.bio.S"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2 col-md-offset-2" for="id_tagline">Tagline</label>
+                  <div class="col-md-8">
+                    <input class="form-control" id="id_tagline" placeholder="For extra flavor" ng-model="user.tagline.S"></input>
+                  </div>
+                </div>
+                <h3>Your Portfolio</h3>
+                <div class="form-group">
+                  <label class="control-label col-md-2 col-md-offset-2" for="id_website">Personal Website</label>
+                  <div class="col-md-8">
+                    <input class="form-control" id="id_tagline" placeholder="" ng-model="user['personal-website'].S"></input>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <label class="control-label col-md-2 col-md-offset-2" for="id_upload">Upload</label>
+                    <button class="btn-primary fa fa-cloud-upload">
+                      <input name="file" type="file" file></input>
+                    </button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-offset-3 col-md-3">
+                    <button class="btn-lg btn-primary" type="submit" ng-click="addUser()">Save Changes</button>
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn-lg btn-danger" style="float:right" ng-click="cancel()" type="submit">Cancel</button>
+                  </div>
+                </div>
+            </form>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-md-2 col-md-offset-2" for="id_bio">Bio</label>
-            <div class="col-md-8">
-              <textarea class="form-control" id="id_bio" placeholder="Tell us a bit about yourself" rows="3" ng-model="user.bio.S"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-2 col-md-offset-2" for="id_tagline">Tagline</label>
-            <div class="col-md-8">
-              <input class="form-control" id="id_tagline" placeholder="For extra flavor" ng-model="user.tagline.S"></input>
-            </div>
-          </div>
-          <h3>Your Portfolio</h3>
-          <div class="form-group">
-            <label class="control-label col-md-2 col-md-offset-2" for="id_website">Personal Website</label>
-            <div class="col-md-8">
-              <input class="form-control" id="id_tagline" placeholder="" ng-model="user['personal-website'].S"></input>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <label class="control-label col-md-2 col-md-offset-2" for="id_upload">Upload</label>
-          <button class="btn-primary fa fa-cloud-upload"><input  name="file" type="file" file></input></button>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-offset-3 col-md-3">
-              <button class="btn-lg btn-primary" type="submit" ng-click="addUser()">Save Changes</button>
-            </div>
-            <div class="col-md-3">
-              <button class="btn-lg btn-danger" style="float:right" ng-click="cancel()" type="submit">Cancel</button>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
-    </div>
+  </body>
   </div>
-</body>
-</div>

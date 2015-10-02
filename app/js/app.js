@@ -11,7 +11,7 @@ angular.module("app", ["ngResource", "ngRoute", "ngCookies", "ui.bootstrap", "ui
   };
 
 
-}).directive('file', function() {
+/*}).directive('file', function() {
 return {
   restrict: 'AE',
   scope: {
@@ -26,5 +26,5 @@ return {
       scope.$apply();
     });
   }
-};
+};*/
 });
