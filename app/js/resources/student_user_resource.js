@@ -15,6 +15,18 @@ angular.module("app").factory("StudentUserResource", function($q, $http) {
     });
   };
 
+  StudentUserResource.prototype.uploadProfPic = function(params, callback) {
+      var post = $http.post('/api/student/upload-profile-pic', params)
+      .then(function(post){
+        if(typeof post.data === undefined) {
+          return $q.reject(post.data);
+        }
+        else {
+          callback(null);
+        }
+    });
+  };
+
   StudentUserResource.prototype.create = function(params, callback) {
       var post = $http.post('/api/student/create-profile', params)
       .then(function(post){

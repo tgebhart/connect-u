@@ -55,7 +55,7 @@ StudentUserProvider.prototype.uploadExtraInfo = function(params, callback) {
 };
 
 StudentUserProvider.prototype.uploadProfilePic = function(params, callback) {
-  var bucket = new AWS.S3({ params: { Bucket: 'student-profile-pic' } });
+  var bucket = new AWS.S3({ params: { Bucket: 'student-profile-pics'} });
   bucket.putObject(params, function(err, data) {
     if(err){
       console.log('error', err);
