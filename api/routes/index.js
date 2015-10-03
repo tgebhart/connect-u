@@ -190,6 +190,16 @@ router.get('/api/student/get-user', jsonParser, function(req, res, next) {
   });
 });
 
+router.post('/api/student/accept-job', jsonParser, function(req, res, next) {
+  StudentUserProvider.acceptJob(req.body, function(err) {
+    if (err) {
+      console.log('index', err);
+    } else {
+      res.send('student job accepted');
+    }
+  });
+});
+
 
 
 

@@ -29,6 +29,18 @@ angular.module("app").factory("JobResource", function($q, $http) {
     });
   };
 
+  JobResource.prototype.acceptJob = function(params, callback) {
+    var post = $http.post('/api/student/accept-job', params)
+    .then(function(post){
+      if(typeof post.data === undefined) {
+        return $q.reject(post.data);
+      }
+      else {
+        callback(true);
+      }
+    });
+  };
+
   JobResource.prototype.editJob = function(params, callback) {
     var post = $http.post('/api/business/edit-job', params)
     .then(function(post) {

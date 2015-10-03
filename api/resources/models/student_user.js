@@ -128,6 +128,30 @@ StudentUserProvider.prototype.getUser = function(user, callback) {
   });
 };
 
+StudentUserProvider.prototype.acceptJob = function(params, callback) {
+  var jobParams = {
+    "TableName": "jobs",
+    "Key": {
+      "title" : {"S": params.title},
+    },
+    "AttributeUpdates": {
+      "current_workers"
+      "Action": "ADD",
+      "Value": {"M": {
+        "job": params.job
+      } }
+    }
+  };
+  db.updateItem(params, function(err, data) {
+    if(err) {
+      console.log('error', err);
+      return callback(err);
+    }
+    else {
+      return callback(null);
+    }
+  });
+};
 
 
 

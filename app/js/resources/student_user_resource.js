@@ -67,6 +67,18 @@ angular.module("app").factory("StudentUserResource", function($q, $http) {
     });
   };
 
+  StudentUserResource.prototype.acceptJob = function(params, callback) {
+    var post = $http.post('/api/student/accept-job', params)
+    .then(function(post){
+      if(typeof post.data === undefined) {
+        return $q.reject(post.data);
+      }
+      else {
+        callback(true);
+      }
+    });
+  };
+
   return StudentUserResource;
 
 });

@@ -120,6 +120,11 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'StudentViewJobController'
   });
 
+  $routeProvider.when('/student/accept-job-page', {
+    templateUrl: 'student_accept_job_page.html',
+    controller: 'StudentAcceptJobController'
+  });
+
 
 
 
