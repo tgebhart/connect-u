@@ -1,9 +1,10 @@
 angular.module("app").controller('BusinessNewJobController', function($scope, $timeout, $cookies, $http, $location, AuthenticationService, $log, $templateCache, BusinessUserService, JobResource) {
+
   $scope.cookieCompany = '';
   if($cookies.get('company')){
       $scope.cookieCompany = $cookies.get('company');
   }
-  $scope.userParams = BusinessUserService.getUser();
+  $scope.userParams = $cookies.get('username');
   $scope.job = {};
 
   $scope.choices = [{
@@ -57,10 +58,15 @@ angular.module("app").controller('BusinessNewJobController', function($scope, $t
 
   $scope.upload = function() {
     // Configure The S3 Object
-
     JobResource = new JobResource();
+    AWS.config.update({
+      region: 'us-east-1'
+    });
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'us-east-1:a2ea0582-a643-4139-b974-30264823160b',
+    });
+
     var formData = new FormData();
-    $scope.userParams = BusinessUserService.getUser();
 
     $scope.job.workers_required = [];
     _.forEach($scope.choices, function(choice) {
@@ -72,7 +78,7 @@ angular.module("app").controller('BusinessNewJobController', function($scope, $t
     }
     var now = new Date();
 
-    var postParams = {
+    $scope.postParams = {
       "TableName": "jobs",
       "Item": {
         "title": {
@@ -100,34 +106,39 @@ angular.module("app").controller('BusinessNewJobController', function($scope, $t
           "S": $scope.job.deadline
         },
         "uploaded_by": {
-          "S": $scope.userParams.name
+          "S": $scope.userParams
         },
         "upload_company": {
-          "S": $scope.userParams.company
+          "S": $scope.cookieCompany
         },
         "post_date": {
           "S": now
         },
-        "extra_info_url": {},
+        "upload_info_url": {},
       }
     };
 
     if ($scope.file) {
-      postParams.Item.extra_info_url = {
-        "S": "https://s3-us-west-2.amazonaws.com/job-extra-info/" + $scope.file.name
+      $scope.postParams.Item.upload_info_url = {
+        "S": "https://s3-us-west-2.amazonaws.com/job-extra-info/" + $scope.cookieCompany + $scope.file.name
       };
+      var s3 = new AWS.S3({ params: {Bucket: 'job-extra-info'}});
       var params = {
-        Key: $scope.file.name,
-        ContentType: $scope.file.type,
-        Body: formData.append("file", $scope.file),
-        ServerSideEncryption: 'AES256'
+        Key: $scope.cookieCompany + $scope.file.name,
+        Body: $scope.file,
       };
-      JobResource.uploadExtraInfo(params);
+      var req = s3.putObject(params, function(err, data) {
+        if (err) {
+          alert(err);
+        } else {
+          console.log("Upload complete");
+        }
+      });
     }
 
-    checkUp(postParams, function(postParams) {
-      //JobResource = new JobResource();
-      var postJob = JobResource.postJob(postParams, function(val) {
+    checkUp($scope.postParams, function(postParams) {
+
+      var postJob = JobResource.postJob($scope.postParams, function(val) {
         if (val) {
           $location.path('/business/home');
         }

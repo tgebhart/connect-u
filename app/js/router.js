@@ -115,6 +115,11 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'StudentEditProfileController'
   });
 
+  $routeProvider.when('/student/view-job', {
+    templateUrl: 'student_view_job.html',
+    controller: 'StudentViewJobController'
+  });
+
 
 
 

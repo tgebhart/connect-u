@@ -41,11 +41,11 @@ angular.module("app").factory("JobResource", function($q, $http) {
     });
   };
 
-  JobResource.prototype.getCurrentJobs = function(input, callback) {
+  JobResource.prototype.getCurrentJobsBusiness = function(input, callback) {
     var get = $http({
       url: '/api/business/get-current-jobs',
       method: "GET",
-      params: {'user': input.user.company}
+      params: {'user': input}
     })
     .then(function(get){
       if(typeof get.data === undefined) {
@@ -56,6 +56,22 @@ angular.module("app").factory("JobResource", function($q, $http) {
       }
     });
   };
+
+
+    JobResource.prototype.getAllJobs = function(callback) {
+      var get = $http({
+        url: '/api/get-all-jobs',
+        method: "GET",
+      })
+      .then(function(get){
+        if(typeof get.data === undefined) {
+          return $q.reject(get.data);
+        }
+        else {
+          callback(get.data.Items);
+        }
+      });
+    };
 
   return JobResource;
 

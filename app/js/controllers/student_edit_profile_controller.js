@@ -85,11 +85,11 @@ angular.module("app").controller('StudentEditProfileController', function($scope
 
     if ($scope.file) {
       $scope.postParams.Item.upload_info_url = {
-        "S": "https://s3-us-west-2.amazonaws.com/student-extra-info/" + $scope.user.username + $scope.file.name
+        "S": "https://s3-us-west-2.amazonaws.com/student-extra-info/" + $scope.user.username.S + $scope.file.name
       };
       var s3 = new AWS.S3({ params: {Bucket: 'student-extra-info'}});
       var params = {
-        Key: $scope.user.username.S,
+        Key: $scope.user.username.S + $scope.file.name,
         Body: $scope.file,
       };
       var req = s3.putObject(params, function(err, data) {

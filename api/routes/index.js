@@ -167,8 +167,8 @@ router.post('/api/student/get-job', jsonParser, function(req, res, next) {
   });
 });
 
-router.get('/api/student/get-all-jobs', jsonParser, function(req, res, next) {
-  JobProvider.getCurrentJobs(req.query.user, function(data, err) {
+router.get('/api/get-all-jobs', jsonParser, function(req, res, next) {
+  JobProvider.getAllJobs(function(data, err) {
     if(err) {
       console.log('index', err);
     }

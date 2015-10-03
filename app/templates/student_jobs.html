@@ -53,4 +53,54 @@
       </div>
       <!--/sidebar-nav-fixed -->
     </div>
+
+<div class="container">
+  <div ng-show="jobsLoaded">
+    <div class="row upper-space">
+      <div class="col-md-4 spacing" ng-repeat="job in currentJobs">
+        <!-- Cards-->
+        <div class="flip3D" ng-click="clickView(job)">
+          <div class="back">
+            <section class="backHeader">
+              <h4>Workers</h4>
+              <p>
+                {{job.workers_required.SS}}
+              </p>
+            </section>
+            <section class="backContent">
+              <div>
+                <h6>Project Progress</h6>
+
+              </div>
+              <hr />
+            </section>
+            <section class="backContent">
+              <div>
+                <h6>Social Media</h6>
+                <p>
+                  <a href="#"><i class="fa fa-github fa-3x"></i></a>
+                  <a href="#"><i class="fa fa-dribbble fa-4x"></i></a>
+                  <a href=""><i class="fa fa-twitter fa-4x"></i></a>
+                </p>
+              </div>
+            </section>
+          </div>
+          <div class="front">
+            <section class="about">
+              <h4>{{job.title.S}}</h4>
+            </section>
+            <section class="turn">
+              <p>{{job.description.S}}</p>
+            </section>
+            <div class="card__action-bar">
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <!--controller end-->
+</div>
 </div>

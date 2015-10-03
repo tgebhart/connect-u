@@ -11,17 +11,12 @@ angular.module("app").controller('BusinessCurrentJobsController', function($scop
   $scope.uploadCompany = [];
   $scope.description = [];
   $scope.numJobs = 0;
-  var userModel = {
-    'user': {
-      'name': 'test',
-      'company': 'testco'
-    }
-  };
-  BusinessUserService.setUser(userModel);
-  JobResource = new JobResource();
-  $scope.user = BusinessUserService.getUser();
 
-  JobResource.getCurrentJobs($scope.user, function(callback) {
+  JobResource = new JobResource();
+  $scope.user = $cookies.get('company');
+  console.log($scope.user);
+
+  JobResource.getCurrentJobsBusiness($scope.user, function(callback) {
       $scope.numJobs = callback.length;
       $scope.currentJobs = callback;
       for (i=0; i < callback.length; i++){

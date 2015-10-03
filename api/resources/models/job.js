@@ -85,6 +85,28 @@ JobProvider.prototype.getCurrentJobs = function(params, callback) {
 };
 
 
+JobProvider.prototype.getAllJobs = function(callback) {
+  var queryParams = {
+    'TableName': 'jobs',
+      ScanFilter: {
+        'upload_company' : {
+          'ComparisonOperator' : 'NOT_NULL',
+      },
+    },
+    'Select' : 'ALL_ATTRIBUTES'
+  };
+  db.scan(queryParams, function(err, data) {
+    if(err) {
+      console.log('err', err);
+      return callback(err);
+    }
+      else {
+      return callback(data);
+    }
+  });
+};
+
+
 
 
 
