@@ -7,9 +7,6 @@ angular.module("app").controller('StudentAcceptJobController', function($scope, 
       $scope.cookieFirstName = $cookies.get('firstname');
   }
 
-  $scope.setPosition = function(position) {
-    $scope.position = position;
-  };
 $scope.job = {};
 $scope.clickedJob = JobService.getJob();
 $scope.job = $scope.clickedJob;
@@ -26,12 +23,13 @@ $scope.back = function() {
 };
 
 $scope.accept = function() {
-  console.log('accept');
+  console.log($cookies.get('profile_pic_url'));
   StudentUserResource = new StudentUserResource();
   var acceptParams = {
     "title" : $scope.job.title.S,
     "username" : $cookies.get('username'),
-    "position" :  $scope.position
+    "position" :  $scope.position,
+    "pic" : $cookies.get('profile_pic_url')
   };
   StudentUserResource.acceptJob(acceptParams);
   $location.path('/student/home');

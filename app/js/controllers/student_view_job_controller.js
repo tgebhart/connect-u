@@ -19,5 +19,4 @@ $scope.accept = function() {
   $location.path('/student/accept-job-page');
 };
 
-
 });

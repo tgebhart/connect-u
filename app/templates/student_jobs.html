@@ -76,11 +76,9 @@
             </section>
             <section class="backContent">
               <div>
-                <h6>Social Media</h6>
+                <h6>Members Involved</h6>
                 <p>
-                  <a href="#"><i class="fa fa-github fa-3x"></i></a>
-                  <a href="#"><i class="fa fa-dribbble fa-4x"></i></a>
-                  <a href=""><i class="fa fa-twitter fa-4x"></i></a>
+                  <a ng-repeat="student in job.current_workers">{{student.job.S}}: {{student.user.S}}<img class="img-circular" src="{{student.pic.S}}"></a>
                 </p>
               </div>
             </section>

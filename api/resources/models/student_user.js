@@ -36,7 +36,7 @@ StudentUserProvider.prototype.login = function(user, callback) {
       console.log('aws login error', error);
       return callback(error);
     } else {
-      return callback(null, user_collection);
+      return callback(null,user_collection);
     }
   });
 };
@@ -140,7 +140,8 @@ StudentUserProvider.prototype.acceptJob = function(params, callback) {
       "Action": "PUT",
       "Value": {"M": {
         "job": {"S" : params.position},
-        "user": {"S" : params.username}
+        "user": {"S" : params.username},
+        "pic" : {"S": params.pic}
       }
     }
   },
@@ -156,17 +157,6 @@ StudentUserProvider.prototype.acceptJob = function(params, callback) {
     }
   });
 };
-
-
-module.exports = StudentUserProvider;
-
-
-
-
-
-
-
-
 
 
 module.exports = StudentUserProvider;
