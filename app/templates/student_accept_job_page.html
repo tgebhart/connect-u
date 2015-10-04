@@ -1,5 +1,5 @@
 <!doctype html>
-<div ng-app="app" ng-controller="StudentViewJobController">
+<div ng-app="app" ng-controller="StudentAcceptJobController">
   <div class="navbar navbar-fixed-top navbar-default">
     <div class="container-fluid">
       <div class="row">
@@ -73,20 +73,23 @@
       <div class="col-md-12">
       <div class="card">
         <div class="content">
-          <span class="title">Card title</span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+          <span class="title">{{job.title.S}}</span>
+          <p>By submitting this information, you agree to complete to the best of your abilities all required job expectations by the required deadline as listed in the job description:</p>
         </div>
+        <div class="row">
+        <div class="col-md-12">
+            <div class="form-group internal">
+              <p>I, <input class="signature" required placeholder="your name"></input> agree to complete, to the best of my abilities, all expectations associated with the role of
+               <select ng-model="position" class="form-control" id="id_title" required>
+                 <option></option>
+                 <option data-ng-repeat="worker in job.workers_required.SS">{{worker}}</option>
+               </select> by the deadline {{mm+1}}/{{dd}}/{{yyyy}}</p>
+            </div>
+          </div>
+          </div>
         <div class="action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-      <div class="row">
-        <span class="col-md-offset-4 col-md-5">
-          <button class="btn-lg btn-primary post-job" ng-click="accept()">Sign Me Up</button>
-        </span>
-        <div class="col-md-1">
-          <button class="btn-lg btn-danger" ng-click="back()" style="float:right" type="submit">Back</button>
+          <a ng-click="accept()">I accept</a>
+          <a ng-click="back()">I reject</a>
         </div>
       </div>
     </div>

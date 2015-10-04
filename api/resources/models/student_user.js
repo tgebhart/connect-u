@@ -129,30 +129,33 @@ StudentUserProvider.prototype.getUser = function(user, callback) {
 };
 
 StudentUserProvider.prototype.acceptJob = function(params, callback) {
+  console.log('params', params.title);
   var jobParams = {
     "TableName": "jobs",
     "Key": {
       "title" : {"S": params.title},
     },
     "AttributeUpdates": {
-      "current_workers"
-      "Action": "ADD",
+      "current_workers": {
+      "Action": "PUT",
       "Value": {"M": {
-        "job": params.job
-      } }
+        "job": {"S" : params.position},
+        "user": {"S" : params.username}
+      }
     }
+  },
+},
   };
-  db.updateItem(params, function(err, data) {
+  db.updateItem(jobParams, function(err, data) {
     if(err) {
       console.log('error', err);
       return callback(err);
     }
     else {
-      return callback(null);
+      return callback(true);
     }
   });
 };
-
 
 
 module.exports = StudentUserProvider;

@@ -1,4 +1,4 @@
-angular.module("app").controller('StudentAcceptJobController', function($scope, $timeout, $cookies, $http, $location, AuthenticationService, $log, $templateCache, StudentUserResource) {
+angular.module("app").controller('StudentAcceptJobController', function($scope, $timeout, $cookies, $http, $location, AuthenticationService, $log, $templateCache, StudentUserResource, JobService) {
 
   $scope.position = '';
 
@@ -14,6 +14,11 @@ $scope.job = {};
 $scope.clickedJob = JobService.getJob();
 $scope.job = $scope.clickedJob;
 console.log($scope.job);
+
+$scope.formatDate  = new Date($scope.clickedJob.deadline.S);
+$scope.mm = $scope.formatDate.getMonth();
+$scope.dd = $scope.formatDate.getDate();
+$scope.yyyy = $scope.formatDate.getUTCFullYear();
 $scope.job.deadline.S = new Date($scope.clickedJob.deadline.S);
 
 $scope.back = function() {
@@ -21,13 +26,15 @@ $scope.back = function() {
 };
 
 $scope.accept = function() {
+  console.log('accept');
+  StudentUserResource = new StudentUserResource();
   var acceptParams = {
-    "title" : $scope.job.title,
+    "title" : $scope.job.title.S,
     "username" : $cookies.get('username'),
     "position" :  $scope.position
   };
   StudentUserResource.acceptJob(acceptParams);
-  $location.path('/student/accept-job-page');
+  $location.path('/student/home');
 };
 
 
